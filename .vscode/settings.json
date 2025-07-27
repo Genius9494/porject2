@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.multiRootWorkspaceName": "gaming-boi-tutorial2-main",
+    "editor.experimental.treeSitterTelemetry": false,
+    "debug.terminal.clearBeforeReusing": false,
+    "terminal.integrated.accessibleViewFocusOnCommandExecution": false,
+    "code-runner.runInTerminal": true,
+    "runInTerminal.clearBeforeRun": true,
+    "codeiumEnterprise.portalUrl": "https://codeium.example.com"
+}
