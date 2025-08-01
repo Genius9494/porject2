@@ -4,11 +4,12 @@ import GameReview from "@/app/models/review";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: {params: {id: string }}
+  // { params }: { params: { id: string } }
 ) {
   await connect();
 
-  const reviewId = params.id;
+  const reviewId = context.params.id;
   const { userId, comment, username } = await req.json();
 
   if (!userId || !comment) {

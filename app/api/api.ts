@@ -12,7 +12,6 @@ const fetchFn = async (url: string, cache?: number) => {
   }
 
   const res = await fetch(url, fetchOptions);
-
   if (!res.ok) {
     throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
   }
@@ -67,6 +66,20 @@ export const getGamesByIds = async function (ids: string[]) {
   const data = await Promise.all(ids.map((id) => getGame(id)));
   return data;
 };
+
+
+
+export const getFullGameDetails = async (slug: string) => {
+  const API_KEY = process.env.RAWG_API_KEY;
+  const url = `https://api.rawg.io/api/games/${slug}?key=${API_KEY}`;
+
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("❌ Failed to fetch game details");
+
+  const data = await res.json();
+  return data;
+};
+
 
 
 

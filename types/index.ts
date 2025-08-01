@@ -83,7 +83,6 @@ export interface Game {
   description_raw: string;
   background_image_additional?: string;
   metacritic: number | null;
-  playtime: number;
   suggestions_count: number;
   updated: string;
   user_game: any | null;
@@ -97,10 +96,31 @@ export interface Game {
   //  السعر
   genres: Genre[];
   stores: Store[];
-  clip: string | null;
   tags: Tag[];
   esrb_rating: EsrbRating | null;
   short_screenshots: Screenshot[];
+
+
+  description: string;
+  website: string;
+  developers: any[];
+  publishers: any[];
+  achievements_count: number;
+  movies_count: number;
+  community_rating: number;
+  reddit_url: string;
+  reddit_name: string;
+  reddit_description: string;
+  reddit_logo: string;
+  clip: {
+    clip: string;
+    video: string;
+    preview: string;
+  } | null;
+  playtime: number;
+  twitch_count: number;
+  reactions: { [key: string]: number };
+
   
 }
 
@@ -115,7 +135,23 @@ export const normalizeGame = (partial: Partial<Game>): Game => {
     //  السعر
     price: partial.price ?? 0, 
     //  السعر    
-
+    
+    //new
+    description: partial.description ?? '',
+    website: partial.website ?? '',
+    developers: partial.developers ?? [],
+    publishers: partial.publishers ?? [],
+    achievements_count: partial.achievements_count ?? 0,
+    movies_count: partial.movies_count ?? 0,
+    community_rating: partial.community_rating ?? 0,
+    reddit_url: partial.reddit_url ?? '',
+    reddit_name: partial.reddit_name ?? '',
+    reddit_description: partial.reddit_description ?? '',
+    reddit_logo: partial.reddit_logo ?? '',
+    playtime: partial.playtime ?? 0,
+    twitch_count: partial.twitch_count ?? 0,
+    reactions: partial.reactions ?? {},
+    //new
 
     tba: partial.tba ?? false,
     background_image: partial.background_image ?? '',
@@ -136,7 +172,6 @@ export const normalizeGame = (partial: Partial<Game>): Game => {
     description_raw: partial.description_raw ?? '',
     background_image_additional: partial.background_image_additional ?? '',
     metacritic: partial.metacritic ?? null,
-    playtime: partial.playtime ?? 0,
     suggestions_count: partial.suggestions_count ?? 0,
     updated: partial.updated ?? '',
     user_game: partial.user_game ?? null,

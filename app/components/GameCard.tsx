@@ -22,6 +22,7 @@ import { useDiscountStore } from "@/app/store/discountStore";
 
 import YouTubePlayer from "./YouTubePlayer";
 import review from "../models/review";
+import { getFullGameDetails } from "../api/api";
 
 
 
@@ -46,10 +47,28 @@ type GameCardProps = {
   screenBig?: boolean;
   discountPercent?: number;
   discountEndTime?: string;
+  playtime?: number;
+  gameData?: any;
+  screenshots?: any[];
+  similar?: any[];
+  initialReviews?: any[];
+  description_raw?: string;
+  website?: string;
+  developers?: { name: string }[];
+  publishers?: { name: string }[];
+  achievements_count?: number;
+  reddit_url?: string;
+  reddit_name?: string;
+  reddit_description?: string;
+  reddit_logo?: string; 
+  name?: string;
+  community_rating?: number;
+  clip?: { clip: string; video: string };
 };
 
-const GameCard = ({ game: rawGame, images, wishlist = false,  image, discountEndTime, discountPercent }: GameCardProps) => {
+const GameCard = ({ game: rawGame, images, wishlist = false,gameData,  image, discountEndTime, discountPercent }: GameCardProps) => {
   const game = normalizeGame(rawGame);
+  
 
   const [videoId, setVideoId] = useState<string | null>(null);
 
@@ -152,7 +171,7 @@ const GameCard = ({ game: rawGame, images, wishlist = false,  image, discountEnd
     parent_platforms = [],
     rating = 0,
     released = "Unknown",
-    playtime = 0,
+    playtime,
     slug = "default-slug",
     tba = false,
     rating_top = 0,
@@ -160,6 +179,17 @@ const GameCard = ({ game: rawGame, images, wishlist = false,  image, discountEnd
     ratings_count = 0,
     reviews_text_count = 0,
     added = 0,
+    developers = [],
+    publishers = [],
+    website = "",
+    achievements_count = 0,
+    movies_count = 0,
+    community_rating = 0,
+    reddit_url = "",
+    reddit_name = "",
+    reddit_description = "",
+    reddit_logo = "",
+    
   } = game;
 
   const mainImage = background_image || images?.[0]?.image;
@@ -183,24 +213,46 @@ const GameCard = ({ game: rawGame, images, wishlist = false,  image, discountEnd
 
 
   //youtube api key
-  useEffect(() => {
-    const fetchVideo = async () => {
-      try {
-        
-        const cleanName = game.name.replace(/[:\d]+$/, '').trim();
+//   useEffect(() => {
+//   if (!game?.name) return;
 
-        const res = await fetch(`/api/youtube?query=${encodeURIComponent(cleanName)}`);
-        const data = await res.json();
-        console.log("Video Data:", data);
-        setVideoId(data.videoId);
-      } catch (error) {
-        console.error("Failed to fetch video", error);
+//   const fetchVideo = async () => {
+//     try {
+//       const cleanName = game.name.replace(/[:\d]+$/, '').trim();
+
+//       const res = await fetch(`/api/youtube?query=${encodeURIComponent(cleanName)}`);
+//       const data = await res.json();
+
+//       if (data?.videoId) {
+//         setVideoId(data.videoId);
+//       } else {
+//         console.warn("📛 No video found or quota exceeded for:", cleanName);
+//       }
+//     } catch (error) {
+//       console.error("❌ Failed to fetch YouTube video:", error);
+//     }
+//   };
+
+//   fetchVideo();
+// }, [game?.name]);
+
+
+
+  const [games, setGames] = useState<Game>(game);
+  useEffect(() => {
+    const loadDetails = async () => {
+      try {
+        const fullGame = await getFullGameDetails(game.slug);
+        setGames(fullGame); // تحديث الحالة لتحتوي على بيانات حقيقية
+      } catch (err) {
+        console.error("Error loading full game:", err);
       }
     };
 
-    fetchVideo();
-  }, [game.name]);
-  //youtube api key//
+    loadDetails();
+  }, []);
+
+
   
 
   return (
@@ -282,12 +334,18 @@ const GameCard = ({ game: rawGame, images, wishlist = false,  image, discountEnd
           <p className="text-xs text-gray-300">
             Released: <span className="font-medium text-yellow-500">{released}</span>
           </p>
+
+          
           <p className="text-xs text-gray-300">
             playtime: <span className="font-medium text-yellow-500">{play}</span>
           </p>
+
+
           <p className="text-xs text-gray-300">
             Download Times: <span className="font-medium text-yellow-500">{reviews}</span>
           </p>
+
+          
 
           <div className="text-sm font-bold">
             {hasDiscount ? (

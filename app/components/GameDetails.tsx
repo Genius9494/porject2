@@ -16,6 +16,8 @@ import { useGetUser } from '@/lib/queryFunctions';
 import User from './User';
 import { Skeleton } from '@mui/material';
 
+import { getGameDetails } from '@/lib/raw';
+
 
 type Reply = {
     userId: string;
@@ -40,11 +42,68 @@ type GameCardProps = {
     screenBig?: boolean;
     discountPercent?: number;
     discountEndTime?: string;
+    gameData?: any;
+    screenshots?: any[];
+    similar?: any[];
+    initialReviews?: any[];
+
+    description_raw?: string;
+    website?: string;
+    developers?: { name: string }[];
+    publishers?: { name: string }[];
+    achievements_count?: number;
+    reddit_url?: string;
+    reddit_name?: string;
+    reddit_description?: string;
+    reddit_logo?: string;
+    name?: string;
+    community_rating?: number;
+    clip: {
+        clip: string;
+        video: string;
+        preview: string;
+    } | null;
+    playtime?: number;
+    twitch_count?: number;
+    reactions?: { [key: string]: number };
+
+
+
 };
 
 
-export default function GameDetails({ gameData, screenshots, similar, initialReviews, discountPercent, discountEndTime, game: rawGame = false }: GameCardProps | any) {
+
+export default function GameDetails({
+    gameData,
+    screenshots,
+    similar,
+    initialReviews,
+    discountPercent,
+    discountEndTime,
+    game: rawGame = false,
+}: GameCardProps | any) {
+    const {
+        description_raw,
+        website,
+        developers,
+        publishers,
+        achievements_count,
+        reactions,
+        playtime,
+        reddit_url,
+        reddit_name,
+        reddit_description,
+        reddit_logo,
+        community_rating,
+        clip,
+        twitch_count,
+        name,
+    } = gameData;
+
+
     const [localReviews, setLocalReviews] = useState<Review[]>(initialReviews || []);
+    // console.log("reddit_logo:", gameData.reddit_logo);
+
     useEffect(() => {
         const fetchReviews = async () => {
             try {
@@ -98,11 +157,9 @@ export default function GameDetails({ gameData, screenshots, similar, initialRev
 
     const {
         background_image,
-        name,
         id,
         parent_platforms = [],
         released = "Unknown",
-        playtime = 0,
         slug = "default-slug",
         tba = false,
         rating_top = 0,
@@ -244,6 +301,7 @@ export default function GameDetails({ gameData, screenshots, similar, initialRev
 
 
 
+
     return (
         <div className="mt-10">
             {/* تفاصيل اللعبة */}
@@ -265,11 +323,11 @@ export default function GameDetails({ gameData, screenshots, similar, initialRev
                             if (!isInCart) {
                                 addToCart({
                                     id: game.id.toString(),
-                                    name: game.name,
+                                    name: gameData.name,
                                     price: discountedPrice,
                                     quantity: 1,
                                 });
-                                toast.success(`The game ${game.name} has been added to the cart!`, {
+                                toast.success(`The game ${name} has been added to the cart!`, {
                                     style: {
                                         background: "rgba(0, 0, 0, 1)",
                                         color: "green",
@@ -309,7 +367,42 @@ export default function GameDetails({ gameData, screenshots, similar, initialRev
                 />
 
                 <p className="mt-10 col-span-2">{gameData.description_raw}</p>
+
+                <div className='mt-10 space-y-2 w-full flex flex-col items-end'>
+
+
+                    {developers?.length > 0 && (
+                        <p className='text-yellow-500 '> developers: <span className='text-white'> {developers.map((d: { name: string }) => d.name).join(", ")}</span>👨‍💻</p>
+                    )}
+
+
+                    {publishers?.length > 0 && (
+                        <p className='text-yellow-500'> publisher:  <span className='text-white'> {publishers.map((p: { name: string }) => p.name).join(", ")}🏢</span></p>
+                    )}
+
+
+                    {achievements_count !== undefined && (
+                        <p className='text-yellow-500 '> achievements_count: <span className='text-white'> {achievements_count}</span>🏆</p>
+                    )}
+
+
+                    {gameData.playtime > 0 && (
+                        <p className='text-yellow-500'> playtime: <span className='text-white'> {gameData.playtime} hours </span> ⏱️</p>
+                    )}
+
+
+                    {gameData.twitch_count > 0 &&
+                        <p className='text-yellow-500'> Twitch: <span className='text-white'> {gameData.twitch_count}</span>📺</p>
+                    }
+
+
+
+                </div>
             </div>
+
+
+            {/* تفاصيل المطور والناشر وعدد الإنجازات والتحديثات */}
+
 
 
 
