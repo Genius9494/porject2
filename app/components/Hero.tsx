@@ -19,7 +19,7 @@ const Hero = () => {
                   muted={true}
                   loop={true}
                 >
-                  <source type="video/mp4" src="/fortnight.mp4" />
+                  <source type="video/mp4" src="/fort.mp4" />
                 </video>{" "}
                 <CardInfo
                   btnClasses=" font-bold text-white bg-green-500 hover:bg-red-400"
@@ -35,12 +35,12 @@ const Hero = () => {
             card: (
               <div className=" w-full h-full relative">
                 <video
-                  className=" absolute w-full h-full object-cover object-top rounded-2xl  inset-0"
+                  className=" absolute w-full h-full mb-5 object-cover object-top rounded-2xl  inset-0"
                   autoPlay={true}
                   muted={true}
                   loop={true}
                 >
-                  <source type="video/mp4" src="/mortalkombat.mp4" />
+                  <source type="video/mp4" src="/mortalkombat2.mp4" />
                 </video>
                 <CardInfo
                   btnClasses=" font-bold text-white bg-green-500 hover:bg-orange-400"
@@ -61,7 +61,7 @@ const Hero = () => {
                   muted={true}
                   loop={true}
                 >
-                  <source type="video/mp4" src="/goodofwar.mp4" />
+                  <source type="video/mp4" src="/godofwar2.mp4" />
                 </video>
                 <CardInfo
                   btnClasses=" font-bold text-white bg-green-500 hover:bg-orange-400"
@@ -82,7 +82,7 @@ const Hero = () => {
                   muted={true}
                   loop={true}
                 >
-                  <source type="video/mp4" src="/mincraft.mp4" />
+                  <source type="video/mp4" src="/mincraft2.mp4" />
                 </video>
                 <CardInfo
                   btnClasses="font-bold text-white bg-green-500 hover:bg-orange-400"
@@ -103,13 +103,13 @@ const Hero = () => {
                   muted={true}
                   loop={true}
                 >
-                  <source type="video/mp4" src="/mincraft.mp4" />
+                  <source type="video/mp4" src="/amongus2.mp4" />
                 </video>
                 <CardInfo
                   btnClasses="font-bold text-white bg-green-500 hover:bg-orange-400"
                   desc="Join your crewmates in a multiplayer game of teamwork and betrayal! Play online or over local wifi with 4-10 players as you attempt to hold your spaceship together and return back to civilization"
                   title="Mystery"
-                  image="/mm1.png"
+                  image="/among.png"
                 />
               </div>
             ),
@@ -124,13 +124,13 @@ const Hero = () => {
                   muted={true}
                   loop={true}
                 >
-                  <source type="video/mp4" src="/mincraft.mp4" />
+                  <source type="video/mp4" src="./steam.mp4" />
                 </video>
                 <CardInfo
                   btnClasses="font-bold text-white bg-green-500 hover:bg-orange-400"
-                  desc="Minecraft is a sandbox game where players can build and explore their own worlds made of blocks. You can mine resources, craft tools"
+                  desc="PlayerUnknown's Battlegrounds (PUBG) is a competitive battle royale shooter game developed by PUBG Studios and published by KRAFTON"
                   title="Advanture"
-                  image="/mm1.png"
+                  image="/battleground.png"
                 />
               </div>
             ),

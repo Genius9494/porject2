@@ -8,6 +8,21 @@ import type SwiperType from "swiper";
 import "swiper/css";
 
 
+interface SwiperItem {
+  key?: string | number;
+  card?: React.ReactNode;
+  src?: string; // لو تستخدم الصور المصغرة
+
+
+}
+
+
+type SlideItem = {
+  card: React.ReactNode;
+  src: string;
+};
+
+
 const fallbackImage = "/fallback.jpg";
 
 const SwiperCards = ({
@@ -16,7 +31,7 @@ const SwiperCards = ({
   className,
   slidesPerView,
 }: {
-  items: any[];
+  items: SlideItem[]; // بدل ما كانت [{key, card}]
   paginationImages?: boolean;
   className?: string;
   slidesPerView?: number;
@@ -50,15 +65,16 @@ const SwiperCards = ({
         className={`w-full relative ${className || "h-96"}`}
         onSwiper={(swiper) => setSwiper(swiper)}
       >
-        {items.map(({ card }, i) => (
-          <SwiperSlide key={i}>{card}</SwiperSlide>
+
+        {items.map(({ card }, index) => (
+          <SwiperSlide key={index}>{card}</SwiperSlide>
         ))}
       </Swiper>
 
       {paginationImages && (
         <div className="flex items-center gap-4">
-          {items.map(({ src }, i) => {
-            const showFallback = imageErrors[i] || !src;
+          {items.map((item, i) => {
+            const showFallback = imageErrors[i];
 
             return (
               <div
@@ -80,7 +96,7 @@ const SwiperCards = ({
 
                 <Image
                   alt={`Slide thumbnail ${i}`}
-                  src={showFallback ? fallbackImage : src}
+                  src={showFallback ? fallbackImage : item.src} 
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"

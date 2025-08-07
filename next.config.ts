@@ -1,8 +1,7 @@
 // next.config.ts
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
+    domains: ['media.rawg.io'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -12,7 +11,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'media.rawg.io',
-        pathname: '/**',
+        pathname: '/media/**',
       },
       {
         protocol: 'https',
@@ -20,17 +19,24 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    unoptimized: true, // ✅ حل نهائي لمشكلة الصور الخارجية (500 error)
+    unoptimized: true, // لحل مشاكل الصور الخارجية مؤقتاً
   },
+
   typescript: {
     ignoreBuildErrors: true,
   },
+
   env: {
     MONGO_URI: process.env.MONGO_URI || '',
+  },
+
+  experimental: {
+    optimizePackageImports: ['package-name'],
   },
 };
 
 export default nextConfig;
+
 
 
 

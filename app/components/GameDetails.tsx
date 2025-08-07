@@ -66,6 +66,7 @@ type GameCardProps = {
     playtime?: number;
     twitch_count?: number;
     reactions?: { [key: string]: number };
+    id?: number;
 
 
 
@@ -83,6 +84,7 @@ export default function GameDetails({
     game: rawGame = false,
 }: GameCardProps | any) {
     const {
+        id,
         description_raw,
         website,
         developers,
@@ -155,24 +157,12 @@ export default function GameDetails({
 
 
 
-    const {
-        background_image,
-        id,
-        parent_platforms = [],
-        released = "Unknown",
-        slug = "default-slug",
-        tba = false,
-        rating_top = 0,
-        ratings = [],
-        ratings_count = 0,
-        reviews_text_count = 0,
-        added = 0,
-    } = game;
+    
 
 
 
     const { cart, addToCart } = useCart();
-    const isInCart = cart.some(item => item.id === game.id.toString());
+    const isInCart = cart.some(item => item.id === gameData.id.toString());
 
     const { discounts } = useDiscountStore();
     const discountFromStore = discounts[game.id];
@@ -322,12 +312,12 @@ export default function GameDetails({
                         onClick={() => {
                             if (!isInCart) {
                                 addToCart({
-                                    id: game.id.toString(),
+                                    id: gameData.id.toString(),
                                     name: gameData.name,
                                     price: discountedPrice,
                                     quantity: 1,
                                 });
-                                toast.success(`The game ${name} has been added to the cart!`, {
+                                toast.success(`The game ${gameData.name} has been added to the cart!`, {
                                     style: {
                                         background: "rgba(0, 0, 0, 1)",
                                         color: "green",
