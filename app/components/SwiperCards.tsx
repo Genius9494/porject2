@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type SwiperType from "swiper";
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 
 
 interface SwiperItem {

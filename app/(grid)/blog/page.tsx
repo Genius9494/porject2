@@ -1,30 +1,21 @@
-// app/blog/page.tsx
-import Link from "next/link";
+// app/blog/page.tsx (Server Component)
 import { getAllPosts } from "@/lib/getBlogPosts";
+import BlogCarousel from "./BlogCarousel";
+import MaxWidthWrapper from "@/app/components/defaults/MaxWidthWrapper";
 
-export const revalidate = 60;
+
+export const revalidate = 60; // إعادة التوليد كل 60 ثانية
 
 export default function BlogPage() {
-  const posts = getAllPosts();
-
+  const posts = getAllPosts(); // يشتغل هنا لأنه سيرفر
   return (
-    <main id="distinct" className="p-8 mx-auto mt-5 rounded-2xl ">
-      <div id="blog" className="flex items-center justify-center rounded-3xl h-16 ">
-      <h5  className="text-4xl font-bold mt-2 ">مقالات الألعاب</h5>
+    <MaxWidthWrapper className="maxee mt-8 rounded-2xl h-screen">
+    <main className="p-8 mx-auto mt-5 rounded-2xl">
+      <div className="flex items-center justify-center rounded-3xl h-16">
+        <h5 className="text-4xl font-bold mt-2">مقالات الألعاب</h5>
       </div>
-      <div>
-      <ul className="space-y-6 p-6">
-        {posts.map(({ slug, title, publishedAt }) => (
-          <li key={slug} className="pb-4">
-            <Link href={`/blog/${slug}`}>
-              <div className="text-xl text-violet-400 hover:text-pink-500">{title}</div> 
-            </Link>
-            <p className="text-slate-300 mt-1">{new Date(publishedAt).toLocaleDateString()}</p>
-            <hr className="border-pink-300 mt-3" />
-          </li>
-        ))}
-      </ul>
-      </div>
+      <BlogCarousel posts={posts} />
     </main>
+    </MaxWidthWrapper>
   );
 }

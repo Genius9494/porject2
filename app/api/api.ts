@@ -70,7 +70,7 @@ export const getGamesByIds = async function (ids: string[]) {
 
 
 export const getFullGameDetails = async (slug: string) => {
-  const API_KEY = process.env.RAWG_API_KEY;
+  const API_KEY = process.env.RAWG_API_KEY || "fcbd529a05684ba98365adaf247f7c68";
   const url = `https://api.rawg.io/api/games/${slug}?key=${API_KEY}`;
 
   const res = await fetch(url);

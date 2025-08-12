@@ -12,11 +12,12 @@
       transform: translateX(100%);
     }
   }
-  
+
   .animate-marquee {
     animation: marquee 12s linear infinite;
   }
 }
+
 @layer utilities {
   @keyframes marquee2 {
     0% {
@@ -27,11 +28,12 @@
       transform: translateX(-100%);
     }
   }
-  
+
   .animate-marquee2 {
     animation: marquee 15s linear infinite;
   }
 }
+
 @layer utilities {
   @keyframes marquee3 {
     0% {
@@ -43,12 +45,13 @@
       transform: translateX(-100%);
     }
   }
-  
+
   .animate-marquee3 {
     animation: marquee 17s linear reverse;
     animation-iteration-count: infinite;
   }
 }
+
 @layer utilities {
   @keyframes marquee4 {
     0% {
@@ -60,10 +63,10 @@
       transform: translateX(-100%);
     }
   }
-  
+
   .animate-marquee4 {
     animation: marquee 20s linear reverse;
-        animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
   }
 }
 
@@ -175,6 +178,10 @@ body {
   background: linear-gradient(186deg, rgb(65, 18, 96) 0%, rgb(168, 52, 75) 100%);
 }
 
+.maxee {
+  background: linear-gradient(186deg, rgb(65, 18, 96) 0%, rgb(168, 52, 75) 100%);
+}
+
 #span2:hover {
   word-spacing: 3px;
 }
@@ -191,6 +198,144 @@ article img {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 20px;
 }
+
+
+
+.orb-moving {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, white, yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 8px yellow, 0 0 15px orange;
+  animation: move-around 5s linear infinite;
+}
+
+/* التحريك حول الإطار */
+@keyframes move-around {
+  0% {
+    top: -5px;
+    left: 0;
+    transform: translateX(0);
+  }
+
+  /* أعلى اليسار */
+  25% {
+    top: -5px;
+    left: 100%;
+    transform: translateX(-100%);
+  }
+
+  /* أعلى اليمين */
+  50% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+
+  /* أسفل اليمين */
+  75% {
+    top: 100%;
+    left: 0;
+    transform: translateY(-100%);
+  }
+
+  /* أسفل اليسار */
+  100% {
+    top: -5px;
+    left: 0;
+    transform: translateX(0);
+  }
+
+  /* رجوع للبداية */
+}
+
+
+
+.swiper-slide {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: 0.6;
+  transform: scale(0.85);
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+
+
+
+
+.perspective {
+  perspective: 1000px;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 20s infinite linear;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(400px) translateX(-50%);
+}
+
+
+
+
+
+
+
+/* .perspective {
+  perspective: 1000px;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 20s infinite linear;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(350px) translateX(-50%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(-360deg);
+  }
+} */
 
 
 

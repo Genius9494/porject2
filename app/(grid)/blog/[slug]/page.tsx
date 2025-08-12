@@ -7,19 +7,7 @@ export function imageAll() {
   [
     <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
     <img src={"/batman.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
-    <img src={"/allimit.jpg"} alt="osama" className="mb-4 w-[60%] rounded-xl" />,
+    
   ];
   }
   
