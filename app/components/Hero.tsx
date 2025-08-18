@@ -12,13 +12,12 @@ const Hero = () => {
         items={[
           {
             card: (
-              
+
               <div className="relative w-full h-full flex items-center justify-center">
                 {/* حاوية الدوران */}
                 <div className="absolute w-[120%] h-[120%] rounded-full pointer-events-none animate-spin-slow">
                   <div className="orb"></div>
                 </div>
-
                 {/* الفيديو */}
                 <video
                   className="relative z-0 w-full h-full object-cover rounded-2xl"
@@ -28,9 +27,10 @@ const Hero = () => {
                 >
                   <source type="video/mp4" src="/fort.mp4" />
                 </video>
-                <span className="orb-moving"></span>
-                
-                
+
+
+
+
                 {/* معلومات البطاقة */}
                 <CardInfo
                   btnClasses="font-bold text-white bg-green-500 hover:bg-red-400"
@@ -38,6 +38,10 @@ const Hero = () => {
                   title="Epic game"
                   image="/fortnight.png"
                 />
+                <span className="orb-moving"></span>
+                <span className="orb-moving"></span>
+                <span className="orb-moving"></span>
+
               </div>
 
             ),

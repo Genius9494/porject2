@@ -2,7 +2,8 @@
 title: "تحليل وتقييم ألعاب الرياضة لعام 2025"
 publishedAt: "2025-04-01"
 tags: ["رياضة", "ألعاب", "تقييم"]
-image: "/images/sports-games.jpg"
+image: "![batman](/analys.jpg)"
+
 ---
 ![batman](/analys.jpg)
 

@@ -49,6 +49,8 @@
     try {
       await connect();
 
+
+      
       const existingUser = await User.findOne({ email: data.email });
       if (existingUser) {
         return { error: "البريد الإلكتروني مسجل بالفعل" };
@@ -63,7 +65,6 @@
         avatar: data.avatar?.secure_url ? data.avatar : undefined,
         role: data.role ?? "user",
       });
-
       console.log("✅ Created User:", createdUser);
 
       return { 

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 import type { BlogPost } from "@/lib/getBlogPosts";
+import Image from "next/image";
 
 export default function BlogCarousel({ posts }: { posts: Omit<BlogPost, "content">[] }) {
     const carouselRef = useRef<HTMLDivElement>(null);
@@ -85,9 +86,57 @@ export default function BlogCarousel({ posts }: { posts: Omit<BlogPost, "content
         isPausedRef.current = false;
     };
 
+    const images = [{
+        image: "/batman.jpg",
+    },
+    {
+        image: "/amongus.jpg",
+    },
+    {
+        image: "/allimit.jpg",
+    },
+    {
+        image: "/batman.jpg",
+    },
+    {
+        image: "/doom.jpg",
+    },
+    {
+        image: "/crazy.jpg",
+    },
+    {
+        image: "/crown.jpg",
+    },
+    {
+        image: "/deadzone.jpg",
+    },
+    {
+        image: "/elder.jpg",
+    },
+    {
+        image: "/allimit.jpg",
+    },
+    {
+        image: "/elder2.jpg",
+    },
+    {
+        image: "/fallback.jpg",
+    },
+    {
+        image: "/fbc.jpg",
+    },
+    {
+        image: "/feral.jpg",
+    },
+    {
+        image: "/fortnite.jpg",
+    },
+
+    ]
+
     return (
         <div
-            className="relative w-[300px] h-[400px] mx-auto mt-44  perspective"
+            className="relative w-[300px] h-[400px] mx-auto mt-44 sticky! perspective"
             style={{ "--radius": "500px", "--total": posts.length } as React.CSSProperties}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -97,26 +146,37 @@ export default function BlogCarousel({ posts }: { posts: Omit<BlogPost, "content
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
         >
-            <div ref={carouselRef} className="carousel h-screen">
-                {posts.map(({ slug, title, publishedAt }, i) => (
-                    <div
-                        key={slug}
-                        className="card bg-black/40 hover:bg-black/20 sticky"
-                        style={{ "--i": i } as React.CSSProperties}
-                        onMouseEnter={() => (isPausedRef.current = true)}
-                        onMouseLeave={() => (isPausedRef.current = false)}
-                    >
-                        <Link href={`/blog/${slug}`}>
-                            <div className="text-xl font-bold text-violet-400 hover:text-pink-500">
-                                {title}
-                            </div>
-                        </Link>
-                        <p className="text-slate-300 mt-2 text-sm">
-                            {new Date(publishedAt).toLocaleDateString()}
-                        </p>
-                    </div>
-                ))}
+            <div ref={carouselRef} className="carousel h-[100%] relative w-[100%]">
+                {posts.map(({ slug, title, publishedAt }, i) => {
+                    const imageSrc = images[i % images.length].image; // الصورة المقابلة للمقال
+                    return (
+                        <div
+                            key={slug}
+                            className="card hover:bg-red-500 rounded-2xl absolute overflow-hidden top-0 left-0 w-[200px] h-[300px] cursor-pointer"
+                            style={{ "--i": i } as React.CSSProperties}
+                            onMouseEnter={() => (isPausedRef.current = true)}
+                            onMouseLeave={() => (isPausedRef.current = false)}
+                        >
+                            <Link href={`/blog/${slug}`}>
+                                <img
+                                    src={imageSrc}
+                                    alt={title}
+                                    className="w-full h-[60%] object-cover rounded-xl"
+                                />
+                                <div className="p-2">
+                                    <div className="text-sm font-bold text-green-600 hover:text-pink-500">
+                                        {title}
+                                    </div>
+                                    <p className="text-slate-300 mt-2 text-sm">
+                                        {new Date(publishedAt).toLocaleDateString()}
+                                    </p>
+                                </div>
+                            </Link>
+                        </div>
+                    );
+                })}
             </div>
+
         </div>
     );
 }

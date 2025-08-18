@@ -47,9 +47,10 @@ const Singup = () => {
       email: "",
       name: "",
       confirmPassword: "",
-      avatar: undefined, // أو avatar: undefined
+      avatar: undefined,
     },
   });
+  console.log()
 
 
   const router = useRouter();

@@ -159,9 +159,9 @@
   background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(123, 43, 59) 100%);
 }
 
-#empty:hover {
+/* #empty:hover {
   background: linear-gradient(186deg, rgb(148, 0, 246) 0%, rgb(164, 35, 61) 100%);
-}
+} */
 
 
 
@@ -178,18 +178,13 @@ body {
   background: linear-gradient(186deg, rgb(65, 18, 96) 0%, rgb(168, 52, 75) 100%);
 }
 
-.maxee {
-  background: linear-gradient(186deg, rgb(65, 18, 96) 0%, rgb(168, 52, 75) 100%);
-}
+
 
 #span2:hover {
   word-spacing: 3px;
 }
 
-#blog {
-  background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(40, 99, 73) 100%);
-  width: 250px;
-}
+
 
 article img {
   border-radius: 12px;
@@ -208,7 +203,7 @@ article img {
   background: radial-gradient(circle, white, yellow);
   border-radius: 50%;
   box-shadow: 0 0 8px yellow, 0 0 15px orange;
-  animation: move-around 5s linear infinite;
+  animation: move-around 20s linear infinite;
 }
 
 /* التحريك حول الإطار */
@@ -252,20 +247,23 @@ article img {
 
 
 
-.swiper-slide {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
 
-.swiper-slide-prev,
-.swiper-slide-next {
-  opacity: 0.6;
-  transform: scale(0.85);
-}
 
-.swiper-slide-active {
-  opacity: 1;
-  transform: scale(1);
-}
+
+
+
+
+
+
+
+
+/* .swiper-slide {
+  transition: transform 0.3s ease,  0.3s ease;
+} */
+
+
+
+
 
 
 
@@ -274,27 +272,31 @@ article img {
 
 
 .perspective {
-  perspective: 1000px;
+  perspective: 2000px;
 }
 
 .carousel {
-  width: 100%;
-  height: 100%;
-  position: relative;
   transform-style: preserve-3d;
-  animation: rotate 20s infinite linear;
+  /* animation: rotate 1s infinite linear; */
 }
 
 .card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 180px;
-  height: 250px;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(400px) translateX(-50%);
+  transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(450px) ;
+  background: linear-gradient(186deg, rgb(59, 22, 83) 0%, rgb(124, 51, 65) 100%);
+
+}
+
+.maxee {
+  background: linear-gradient(186deg, rgb(65, 18, 96) 0%, rgb(168, 52, 75) 100%);
+}
+
+
+#blog {
+  background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(40, 99, 73) 100%);
+  width: 250px;
 }
 
 

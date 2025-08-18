@@ -26,6 +26,7 @@ export const NAV_LINKS = [
   { link: "/free", label: "Free Games", icon: <GrCubes /> },
   { link: "/discount", label: "Discounts section", icon: <FiAward /> },
   { link: "/blog", label: "Blogs", icon: <FaMicroblog /> },
+  { link: "/compare", label: "Compare", icon: <FaMicroblog /> },
   // { link: "/admin", label: "role", icon: <FiAward /> },
 ];
 

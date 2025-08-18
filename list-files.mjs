@@ -28,4 +28,4 @@ function listFiles(dir, prefix = '') {
 const projectRoot = path.resolve(__dirname, './app');
 listFiles(projectRoot);
 
-console.log('✅ تمت انشاء قائمة الملفات بنجاح.');
+console.log('Done');
