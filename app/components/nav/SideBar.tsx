@@ -14,7 +14,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { GrCubes } from "react-icons/gr";
 import { FaMicroblog } from "react-icons/fa6";
 import BackToTopButton from "../BackToTopButton";
-
+import { TbGitCompare } from "react-icons/tb";
 
 
 export const NAV_LINKS = [
@@ -25,8 +25,11 @@ export const NAV_LINKS = [
   { link: "/famous", label: "Famous", icon: <FiFeather /> },
   { link: "/free", label: "Free Games", icon: <GrCubes /> },
   { link: "/discount", label: "Discounts section", icon: <FiAward /> },
+  { link: "/compare", label: "Compare", icon: <TbGitCompare /> },
+  { link: "/gifts", label: "Gifts Section", icon: <TbGitCompare /> },
+
+
   { link: "/blog", label: "Blogs", icon: <FaMicroblog /> },
-  { link: "/compare", label: "Compare", icon: <FaMicroblog /> },
   // { link: "/admin", label: "role", icon: <FiAward /> },
 ];
 
@@ -54,7 +57,7 @@ const SideBar = () => {
               className="w-10 h-10 rounded-full border border-white"
               width={40}
               height={40}
-              
+
             />
             <div>
               <p className="font-bold text-white text-lg">Genius</p>
@@ -63,12 +66,12 @@ const SideBar = () => {
           </div>
         ) : null}
 
-        
-        {NAV_LINKS.map((navLink, i) => (
-          <NavLink key={i} navLink={navLink} />
-        ))}
+        <div className="space-y-2">
+          {NAV_LINKS.map((navLink, i) => (
+            <NavLink key={i} navLink={navLink} />
+          ))}
+        </div>
 
-        
         {isLoading ? (
           <div className="mt-auto space-y-2">
             <Skeleton className="h-4 w-[130px]" />
@@ -76,7 +79,7 @@ const SideBar = () => {
           </div>
         ) : user?.data ? (
           <div className="mt-auto w-full space-y-2">
-            
+
             <NavLink
               navLink={{
                 link: "/settings",
@@ -84,7 +87,7 @@ const SideBar = () => {
                 icon: <Settings />,
               }}
             />
-            
+
           </div>
         ) : null}
       </div>

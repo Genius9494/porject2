@@ -152,7 +152,7 @@ export default function BlogCarousel({ posts }: { posts: Omit<BlogPost, "content
                     return (
                         <div
                             key={slug}
-                            className="card hover:bg-red-500 rounded-2xl absolute overflow-hidden top-0 left-0 w-[200px] h-[300px] cursor-pointer"
+                            className="card hover:bg-red-500 rounded-2xl -mt-8 absolute overflow-hidden top-0 left-0 w-[200px] h-[300px] cursor-pointer"
                             style={{ "--i": i } as React.CSSProperties}
                             onMouseEnter={() => (isPausedRef.current = true)}
                             onMouseLeave={() => (isPausedRef.current = false)}

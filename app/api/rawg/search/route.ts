@@ -34,6 +34,13 @@ export async function GET(req: Request) {
       released: g.released,
       background_image: g.background_image,
       slug: g.slug,
+      rating: g.rating,
+      added: g.added,
+      playtime: g.playtime,
+      metacritic: g.metacritic,
+      parent_platforms: g.parent_platforms,
+      ratings_count: g.ratings_count,
+      short_screenshots: g.short_screenshots,
     }));
 
     return NextResponse.json({ results });

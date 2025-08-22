@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import React from 'react';
 import Stripe from 'stripe';
 
 // تأكد أن المفتاح موجود
@@ -23,15 +22,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid product price' }, { status: 400 });
     }
 
+    // تحويل السعر إلى سنت
+    const amount = Math.round(price * 100);
+
     // استخدام NEXT_PUBLIC_URL أو localhost في التطوير
     const baseUrl = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
-
-    // إذا السعر بالدولار نحوله للسنت (stripe يحتاج سنت)
-    const price2 = React.useMemo(() => {
-        const min = 100;
-        const max = 700;
-        return +(Math.random() * (max - min) + min).toFixed(2);
-      }, []);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -40,15 +35,14 @@ export async function POST(request: Request) {
           price_data: {
             currency: 'usd',
             product_data: { name },
-            unit_amount: price2,
+            unit_amount: amount,
           },
           quantity: 1,
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
-
+      success_url: `${baseUrl}/success`,
+      cancel_url: `${baseUrl}/cancel`,
     });
 
     return NextResponse.json({ url: session.url });

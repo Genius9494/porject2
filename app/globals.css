@@ -174,6 +174,10 @@ body {
   background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(168, 52, 75) 100%);
 }
 
+#success {
+  background: linear-gradient(186deg, rgb(255, 255, 255) 0%, rgb(40, 49, 49) 100%);
+}
+
 #famous {
   background: linear-gradient(186deg, rgb(65, 18, 96) 0%, rgb(168, 52, 75) 100%);
 }
@@ -284,7 +288,7 @@ article img {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(450px) ;
+  transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(450px);
   background: linear-gradient(186deg, rgb(59, 22, 83) 0%, rgb(124, 51, 65) 100%);
 
 }
@@ -298,6 +302,12 @@ article img {
   background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(40, 99, 73) 100%);
   width: 250px;
 }
+
+.description {
+    background: linear-gradient(186deg, rgb(106, 25, 99) 0%, rgb(55, 38, 55) 100%);
+    
+}
+
 
 
 

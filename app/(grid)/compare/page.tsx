@@ -106,11 +106,25 @@ export default function ComparePage() {
                     [game1.name]: game1.metacritic,
                     [game2.name]: game2.metacritic,
                 },
+                {
+                    metric: "Released",
+                    [game1.name]: game1.released,
+                    [game2.name]: game2.released,
+                },
+                {
+                    matric: "Playtime (hrs)",
+                    [game1.name]: game1.playtime,
+                    [game2.name]: game2.playtime,
+                },
+
+
+
+
             ]
             : [];
 
     return (
-        
+
         <div id="cart" className=" rounded-2xl mt-8 relative">
             <div className="p-6 max-w-5xl mx-auto  ">
                 <h1 className="text-3xl font-bold mb-6 text-center">🎮 Compare two games</h1>
@@ -223,14 +237,14 @@ export default function ComparePage() {
                                         <Bar
                                             dataKey={game1.name}
                                             fill="url(#colorGame1)"
-                                            activeBar={{ fill: "#8B5CF6" }} // بنفسجي قوي
+                                            activeBar={{ fill: "#8B5CF6" }}
                                         />
                                     )}
                                     {game2 && (
                                         <Bar
                                             dataKey={game2.name}
                                             fill="url(#colorGame2)"
-                                            activeBar={{ fill: "#F59E0B" }} // برتقالي
+                                            activeBar={{ fill: "#F59E0B" }}
                                         />
                                     )}
                                     <defs>
@@ -252,6 +266,6 @@ export default function ComparePage() {
                 )}
             </div>
         </div>
-        
+
     );
 }

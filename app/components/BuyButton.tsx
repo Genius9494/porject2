@@ -20,6 +20,7 @@ const BuyButton: React.FC<BuyButtonProps> = ({ name, price }) => {
         body: JSON.stringify({ name, price }),
       });
 
+
       if (!res.ok) {
         const errorData = await res.json();
         console.error("API Error:", errorData);

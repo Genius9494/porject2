@@ -317,7 +317,7 @@ const DiscountGames = () => {
             wishlist
             image="/discount20.png"
             discountPercent={20}
-            discountEndTime="2025-11-17T23:59:00Z"
+            discountEndTime="2025-12-17T23:59:00Z"
           />;
 
         })}
