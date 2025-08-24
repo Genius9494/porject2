@@ -166,9 +166,10 @@
 
 
 body {
-  background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(138, 55, 72) 100%);
+  background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(110, 50, 62) 100%);
   direction: rtl;
 }
+
 
 #cart {
   background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(168, 52, 75) 100%);
@@ -289,7 +290,8 @@ article img {
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   transform: rotateY(calc(var(--i) * 450deg / var(--total))) translateZ(450px);
-  background: linear-gradient(186deg, rgb(59, 22, 83) 0%, rgb(124, 51, 65) 100%);
+  background: linear-gradient(186deg, rgb(59, 22, 83) 0%, rgb(54, 31, 35) 100%);
+  
 
 }
 
@@ -304,7 +306,7 @@ article img {
 }
 
 .description {
-    background: linear-gradient(186deg, rgb(106, 25, 99) 0%, rgb(55, 38, 55) 100%);
+    background: linear-gradient(186deg, rgb(126, 48, 124) 0%, rgb(0, 0, 0) 100%);
     
 }
 

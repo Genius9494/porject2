@@ -1,13 +1,13 @@
 ---
-title: "أفضل 10 ألعاب مستقلة حصلت على تقييمات عالية في RAWG"
+title: "Top 10 Highly Rated Indie Games on RAWG"
 publishedAt: "2025-04-15"
 tags: ["ألعاب مستقلة", "تقييمات", "RAWG"]
 image: "/images/indie-games.jpg"
 ---
 ![batman](/top.jpg)
 
-الألعاب المستقلة غالبًا ما تقدم أفكارًا مبتكرة وتجارب فريدة.
+Indie games often offer innovative ideas and unique experiences.
 
-في هذا المقال نعرض أفضل 10 ألعاب مستقلة حازت على تقييمات مرتفعة في RAWG.
+In this article, we showcase the top 10 indie games that received high ratings on RAWG.
 
-اكتشف هذه الجواهر المخفية!
+Discover these hidden gems!

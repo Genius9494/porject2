@@ -1,13 +1,13 @@
 ---
-title: "كيف تستخدم RAWG API لبناء موقع ألعاب مذهل"
+title: "How to Use the RAWG API to Build an Amazing Gaming Website"
 publishedAt: "2025-02-05"
 tags: ["RAWG API", "تطوير", "مواقع"]
 image: "/images/rawg-api.jpg"
 ---
 ![batman](/rawg.png)
 
-هل ترغب في بناء موقع ألعاب يعتمد على RAWG API؟ هذا المقال يشرح لك الخطوات الأساسية لاستخدام API.
+Do you want to build a gaming website based on the RAWG API? This article explains the basic steps for using the API.
 
-مع أمثلة على كيفية جلب وعرض بيانات الألعاب بشكل جذاب.
+With examples of how to fetch and display game data in an attractive way.
 
-ابدأ مشروعك التقني بثقة.
+Start your tech project with confidence.

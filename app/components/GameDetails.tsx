@@ -20,6 +20,7 @@ import { getGameDetails } from '@/lib/raw';
 
 
 type Reply = {
+    username?: string;
     userId: string;
     comment: string;
     createdAt: string;
@@ -157,7 +158,7 @@ export default function GameDetails({
 
 
 
-    
+
 
 
 
@@ -213,22 +214,20 @@ export default function GameDetails({
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    gameId: gameData.id,
                     rating,
                     comment,
-                    userId: "guest343242",
-                    username: "Genius",
+                    userId: user?.data?._id || "guest343242", // ✅ التعديل هنا
+                    username: user?.data?.name || "Guest",
                     replies: [],
-
                 }),
-
             });
 
             if (res.ok) {
                 const newReview = await res.json();
+                // ✅ أضف التعليق الجديد مباشرة
                 setLocalReviews((prev) => [newReview, ...prev]);
                 setComment("");
-                setRating(1);
+                setRating(0);
             } else {
                 const errorText = await res.text();
                 console.error("Failed To Save Comment:", errorText);
@@ -254,12 +253,14 @@ export default function GameDetails({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     comment,
-                    userId: "guest343242", // ← غيّر حسب النظام
+                    userId: user?.data?._id || "guest343242", // ✅ التعديل هنا
+                    username: user?.data?.name || "Guest",
                 }),
             });
 
             if (res.ok) {
                 const updatedReview = await res.json();
+                // ✅ حدث المراجعة في القائمة
                 setLocalReviews((prev) =>
                     prev.map((r) => (r._id === reviewId ? updatedReview : r))
                 );
@@ -281,6 +282,9 @@ export default function GameDetails({
 
 
 
+
+
+
     const additionalImage = gameData.background_image_additional;
     const allImages = [
         ...screenshots.results,
@@ -290,13 +294,36 @@ export default function GameDetails({
 
 
 
+    
+    // function getLevelColor(level?: string) {
+    //     switch (level) {
+    //         case "مبتدئ":
+    //             return "bg-green-500";
+    //         case "محترف":
+    //             return "bg-blue-500";
+    //         case "خبير":
+    //             return "bg-yellow-500";
+    //         case "أسطورة":
+    //             return "bg-red-500";
+    //         default:
+    //             return "bg-gray-500";
+    //     }
+    // }
 
 
     return (
         <div className="mt-10">
             {/* تفاصيل اللعبة */}
             <div className="col-span-4 flex flex-col gap-2">
-                <h1 className="text-2xl text-white">{gameData.name}</h1>
+                <h1 className="text-2xl text-white flex items-center gap-2">
+                    {gameData.name}
+                    {user?.data && (
+                        <span className="text-green-400 text-sm">
+                            {user.data.name} <span className="text-xs text-gray-400">({user.data.level || 'Lv.1'})</span>
+                        </span>
+                    )}
+                </h1>
+
                 <div className="flex items-center justify-between">
                     <div>Rating count: <span className='text-green-600'> {ratingsCount} </span></div>
                     <AddToWishList gameId={gameData.id.toString()} />
@@ -400,9 +427,40 @@ export default function GameDetails({
                 <GamesSlider title="Similar Games" games={similar.results} />
             )}
 
+
+
             {/* نموذج إرسال التعليق */}
-            <div className="mt-10">
-                <h2 className="text-xl font-bold mb-4">Add a Comment🤞</h2>
+            <div className="mt-10 ">
+                {user?.data && (
+                    <div className="mb-4">
+                        <div className="items-center gap-2">
+                            <span className="text-xs text-gray-400">
+                                (Level: {user.data.level || "LV-1"})
+                            </span>
+                            <span className="text-green-400 font-semibold">
+                                {user.data.name}
+                            </span>
+                        </div>
+
+                        {user.data.points !== undefined && (
+                            <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+                                <div
+                                    className="bg-green-500 h-2 rounded-full"
+                                    style={{
+                                        width: `${Math.min((user.data.points / 2000) * 100, 100)}%`,
+                                    }}
+                                />
+                            </div>
+                        )}
+                        <p className="text-xs text-gray-400 mt-1">
+                            Points: {user.data.points || 0} / 2000
+                        </p>
+                    </div>
+                )}
+
+
+                <h2 className="text-xl font-bold mb-4">Add a Comment 🤞</h2>
+
                 <form onSubmit={handleSubmit}>
                     <textarea
                         value={comment}
@@ -431,6 +489,7 @@ export default function GameDetails({
                         type="submit"
                         className="mt-4 px-4 py-2 bg-green-600 text-white rounded-2xl animate-bounce"
                         disabled={isSubmitting}
+                        
                     >
                         {isSubmitting ? 'Sent Now...' : 'Sent'}
                     </button>
@@ -448,6 +507,15 @@ export default function GameDetails({
                                 <div className="flex items-center gap-1">
                                     {renderStars(r.rating)}
                                     <span className="text-xs text-green-300">{r.rating.toFixed(1) || "N/A"}</span>
+                                    {user?.data?.points && (
+                                        <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+                                            <div
+                                                className="bg-green-500 h-2 rounded-full"
+                                                style={{ width: `${Math.min((user.data.points / 1000) * 100, 100)}%` }}
+                                            />
+                                        </div>
+                                    )}
+
 
                                 </div>
 
@@ -465,11 +533,14 @@ export default function GameDetails({
 
 
                                 <div>
-                                    <p className="text-sm text-gray-400">{user.data.name}</p>
+                                    <p className="text-sm text-gray-400">{user.data.name}  </p>
                                 </div>
 
                             ) : null}
-                            <p className="text-green-400 font-bold">{r.username}</p>
+                            <span className="text-green-400">
+                                {r.username} <span className="text-xs text-gray-400">({user?.data?.level || 'Lv.1'})</span>
+                            </span>
+
 
                             <button
                                 onClick={() =>
@@ -488,7 +559,8 @@ export default function GameDetails({
                                             {r.replies.map((rep, idx) => (
                                                 <div key={idx} className="text-sm text-gray-300">
                                                     <div className="flex justify-between items-center">
-                                                        <span className="text-green-400">{rep.userId}</span>
+                                                        <span className="text-green-400">{rep.username || rep.userId}</span>
+
                                                         <span className="text-xs">{new Date(rep.createdAt).toLocaleDateString()}</span>
                                                     </div>
                                                     <p>{rep.comment}</p>
@@ -525,5 +597,6 @@ export default function GameDetails({
                 )}
             </div>
         </div>
+
     );
 }

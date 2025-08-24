@@ -15,6 +15,7 @@ import { GrCubes } from "react-icons/gr";
 import { FaMicroblog } from "react-icons/fa6";
 import BackToTopButton from "../BackToTopButton";
 import { TbGitCompare } from "react-icons/tb";
+import { useCart } from "@/app/store/cartStore";
 
 
 export const NAV_LINKS = [
@@ -36,6 +37,9 @@ export const NAV_LINKS = [
 const SideBar = () => {
   const { user, isLoading } = useGetUser();
   const queryClient = useQueryClient();
+
+
+
 
   return (
     <div className="col-span-2">
@@ -66,11 +70,12 @@ const SideBar = () => {
           </div>
         ) : null}
 
-        <div className="space-y-2">
+        <div className="-space-y-2">
           {NAV_LINKS.map((navLink, i) => (
             <NavLink key={i} navLink={navLink} />
           ))}
         </div>
+
 
         {isLoading ? (
           <div className="mt-auto space-y-2">

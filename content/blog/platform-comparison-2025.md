@@ -1,13 +1,12 @@
 ---
-title: "مقارنة بين أشهر منصات الألعاب في 2025: PC، PS5، Xbox، Switch"
+title: "Comparison of the most popular gaming platforms in 2025: PC, PS5, Xbox, Switch"
 publishedAt: "2025-01-18"
 tags: ["منصات", "مقارنة", "ألعاب"]
 image: "/public/platforms-2025.jpg"
 ---
 ![batman](/comparison.jpg)
+In 2025, many gaming titles are competing to attract players.
 
-في 2025، تتنافس العديد من منصات الألعاب لجذب اللاعبين.
+In this article, we compare PC, PS5, Xbox, and Switch in terms of performance, exclusive games, and cost.
 
-نقارن في هذا المقال بين PC، PS5، Xbox، وSwitch من حيث الأداء، الألعاب الحصرية، والتكلفة.
-
-مساعدة لك لاختيار المنصة الأنسب لك.
+Help you choose the right game for you.

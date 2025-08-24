@@ -1,5 +1,5 @@
 ---
-title: "تحليل وتقييم ألعاب الرياضة لعام 2025"
+title: "Analysis and Evaluation of the 2025 Sports Games"
 publishedAt: "2025-04-01"
 tags: ["رياضة", "ألعاب", "تقييم"]
 image: "![batman](/analys.jpg)"
@@ -7,8 +7,8 @@ image: "![batman](/analys.jpg)"
 ---
 ![batman](/analys.jpg)
 
-عام 2025 شهد إصدار العديد من ألعاب الرياضة بجودة عالية.
+The year 2025 saw the release of several high-quality sports games.
 
-نقدم في هذا المقال تحليلاً وتقييمًا لأبرز هذه الألعاب.
+In this article, we provide an analysis and evaluation of the most prominent of these games.
 
-مراجعات تفصيلية تساعدك في اختيار اللعبة المناسبة.
+Detailed reviews will help you choose the right game.

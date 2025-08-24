@@ -1,13 +1,12 @@
 ---
-title: "أفضل ألعاب الأكشن التي لا تفوتها في 2025"
+title: "The best action games you shouldn't miss in 2025"
 publishedAt: "2025-02-20"
 tags: ["ألعاب", "أكشن", "2025"]
 image: "/images/action-games-2025.jpg"
 ---
 ![batman](/company.jpg)
+In 2025, many exciting action games were released that combined excitement with stunning graphics.
 
-في عام 2025، صدرت العديد من ألعاب الأكشن المثيرة التي جمعت بين الإثارة والرسومات المبهرة.
+In this article, we present the best of these games that you shouldn't miss.
 
-في هذا المقال، نعرض لكم أفضل هذه الألعاب التي يجب ألا تفوتها.
-
-تعرف على تفاصيل كل لعبة ولماذا تستحق التجربة.
+Learn the details of each game and why it's worth trying.

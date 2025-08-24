@@ -1,13 +1,13 @@
 ---
-title: "تاريخ الألعاب عبر RAWG: كيف تطورت الألعاب خلال العقد الماضي"
+title: "RAWG Gaming History: How Gaming Has Evolved Over the Past Decade"
 publishedAt: "2025-06-05"
 tags: ["تاريخ", "RAWG", "ألعاب"]
 image: "/images/rawg-history.jpg"
 ---
 ![batman](/history.jpg)
 
-منصة RAWG تقدم نافذة مميزة لتاريخ تطور الألعاب.
+The RAWG platform offers a unique window into the history of gaming development.
 
-في هذا المقال نلقي نظرة على كيف تطورت صناعة الألعاب خلال العقد الماضي بناءً على بيانات RAWG.
+In this article, we take a look at how the gaming industry has evolved over the past decade, based on RAWG data.
 
-تعرف على أبرز المحطات والتغيرات.
+Learn about the most significant milestones and changes.

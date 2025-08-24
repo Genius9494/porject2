@@ -1,13 +1,13 @@
 ---
-title: "ألعاب RPG المفضلة لعام 2025: مغامرات لا تنتهي"
+title: "Favorite RPG Games of 2025: Endless Adventures"
 publishedAt: "2025-03-30"
 tags: ["RPG", "ألعاب", "2025"]
 image: "/images/rpg-2025.jpg"
 ---
 ![batman](/tombrider.jpg)
 
-عام 2025 شهد صدور ألعاب RPG مميزة تقدم قصصًا عميقة وعوالم واسعة.
+The year 2025 saw the release of unique RPGs offering deep stories and expansive worlds.
 
-في هذا المقال، نقدم قائمة بأفضل ألعاب RPG التي يجب ألا تفوتها.
+In this article, we present a list of the best RPGs you shouldn't miss.
 
-تعرف على مميزات كل لعبة وأسلوب لعبها.
+Learn about each game's features and gameplay.

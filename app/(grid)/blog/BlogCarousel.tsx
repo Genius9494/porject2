@@ -136,7 +136,7 @@ export default function BlogCarousel({ posts }: { posts: Omit<BlogPost, "content
 
     return (
         <div
-            className="relative w-[300px] h-[400px] mx-auto mt-44 sticky! perspective"
+            className="relative w-[300px] h-[300px] mx-auto mt-44 sticky! perspective"
             style={{ "--radius": "500px", "--total": posts.length } as React.CSSProperties}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -161,13 +161,13 @@ export default function BlogCarousel({ posts }: { posts: Omit<BlogPost, "content
                                 <img
                                     src={imageSrc}
                                     alt={title}
-                                    className="w-full h-[60%] object-cover rounded-xl"
+                                    className="w-full h-[60%] object-cover rounded-xl hover:skew-x-3"
                                 />
                                 <div className="p-2">
-                                    <div className="text-sm font-bold text-green-600 hover:text-pink-500">
+                                    <div className="text-xs font-bold text-gray-400 hover:text-gray-500">
                                         {title}
                                     </div>
-                                    <p className="text-slate-300 mt-2 text-sm">
+                                    <p className="text-green-100 mt-2 text-sm absolute bottom-0">
                                         {new Date(publishedAt).toLocaleDateString()}
                                     </p>
                                 </div>

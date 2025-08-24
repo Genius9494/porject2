@@ -1,5 +1,5 @@
 ---
-title: "أفضل ألعاب 2025 حتى الآن"
+title: "The best games of 2025 so far"
 slug: "best-games-2025"
 publishedAt: "2025-06-01"
 image: "/images/best-2025.jpg"
@@ -8,15 +8,14 @@ tags: ["ألعاب", "ترشيحات", "2025"]
 ![batman](/elder.jpg)
 
 
-في هذا المقال، نستعرض أفضل ألعاب 2025 من حيث الرسوم، أسلوب اللعب، التقييمات، والمجتمع النشط.
+In this article, we review the best games of 2025 in terms of graphics, gameplay, ratings, and active community.
 
 ## 🎮 Elden Ring: Shadow of the Erdtree
 
-لا تزال اللعبة تبهرنا بمستواها القصصي والعمق الفني...
+The game continues to amaze us with its narrative level and artistic depth...
 
 ## 🧠 The Mind's Labyrinth
+A psychological puzzle game worth trying...
 
-لعبة ألغاز نفسية تستحق التجربة…
-
-> نحدّث هذه القائمة شهريًا حسب تقييمات اللاعبين والنقاد.
+> We update this list monthly based on player and critic reviews.
 

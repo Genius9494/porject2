@@ -1,13 +1,13 @@
 ---
-title: "تحديثات وأخبار الألعاب الجديدة القادمة قريبًا"
+title: "Updates and news of new games coming soon"
 publishedAt: "2025-05-10"
 tags: ["أخبار", "تحديثات", "ألعاب"]
 image: "/images/upcoming-games.jpg"
 ---
 ![batman](/soon.jpg)
 
-تابع معنا آخر الأخبار والتحديثات حول الألعاب الجديدة التي ستصدر قريبًا.
+Follow us for the latest news and updates on upcoming games.
 
-معلومات عن مواعيد الإصدار، الميزات الجديدة، والأحداث الخاصة.
+Information on release dates, new features, and special events.
 
-كن على اطلاع دائم بما هو قادم في عالم الألعاب.
+Stay up-to-date on what's coming in the world of gaming.

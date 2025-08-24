@@ -48,7 +48,7 @@ const Login = () => {
         if (res.ok && result.success) {
           toast.success(result.success);
           await queryClient.invalidateQueries({ queryKey: ["user"] });
-          router.push("/Home"); // ✅ التوجيه إلى الصفحة الرئيسية
+          router.push("/Home"); 
         } else {
           toast.error(result.error || "Login failed");
         }

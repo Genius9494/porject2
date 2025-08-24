@@ -94,8 +94,8 @@ const NavBar = () => {
         ) : (
 
           <div className="flex items-center">
-            <ButtonGame link="/login" text="Login"  />
-            <ButtonGame link="/signup" text="Sign up"  />
+            <ButtonGame link="/login" text="Login" />
+            <ButtonGame link="/signup" text="Sign up" />
           </div>
         )}
 

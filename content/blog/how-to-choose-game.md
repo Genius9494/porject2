@@ -1,13 +1,13 @@
 ---
-title: "كيف تختار لعبتك القادمة؟ دليل لأفضل الألعاب حسب التقييمات"
+title: "How to choose your next game? A guide to the best games according to ratings."
 publishedAt: "2025-04-10"
 tags: ["دليل", "اختيار الألعاب", "تقييمات"]
 image: "/images/choose-game.jpg"
 ---
 ![batman](/stygian.jpg)
 
-اختيار اللعبة المناسبة قد يكون أمرًا صعبًا بسبب كثرة الخيارات.
+Choosing the right game can be difficult due to the sheer number of options.
 
-في هذا الدليل، نستعرض كيفية اختيار لعبتك القادمة بناءً على تقييمات اللاعبين والنقاد.
+In this guide, we'll walk you through how to choose your next game based on player and critic reviews.
 
-نصائح تساعدك في اتخاذ القرار المناسب.
+Tips to help you make the right decision.

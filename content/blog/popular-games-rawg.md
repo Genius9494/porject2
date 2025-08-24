@@ -1,13 +1,13 @@
 ---
-title: "أكثر الألعاب شعبية على RAWG هذا الشهر"
+title: "Most popular games on RAWG this month"
 publishedAt: "2025-06-01"
 tags: ["ألعاب", "RAWG", "شعبية"]
 image: "/images/popular-rawg.jpg"
 ---
 ![batman](/rocket.jpg)
 
-تعرف على أكثر الألعاب التي لاقت رواجًا على منصة RAWG خلال هذا الشهر.
+Discover the most popular games on RAWG this month.
 
-تعرض القائمة الألعاب التي شهدت زيادة في عدد اللاعبين والتقييمات.
+The list shows games that saw an increase in player count and ratings.
 
-اكتشف الألعاب التي تستحق التجربة الآن!
+Discover games worth checking out now!

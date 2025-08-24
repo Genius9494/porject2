@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface Item {
@@ -18,15 +18,14 @@ const items: Item[] = [
     title: "First Card",
     topic: "Discount Card 10%",
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, laborum cumque dignissimos quidem atque et eligendi aperiam voluptates beatae maxime.",
+      "Take advantage of the discount now",
     longDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, reiciendis suscipit nobis nulla animi, modi explicabo quod corrupti impedit illo, accusantium in eaque nam quia adipisci aut distinctio porro eligendi. Reprehenderit nostrum consequuntur ea! Accusamus architecto dolores modi ducimus facilis quas voluptatibus! Tempora ratione accusantium magnam nulla tenetur autem beatae.",
+      "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "Used Time", value: "6 hours" },
-      { label: "Charging port", value: "Type-C" },
-      { label: "Compatible", value: "Android" },
-      { label: "Bluetooth", value: "5.3" },
-      { label: "Controlled", value: "Touch" },
+      { label: "points", value: "50 point" },
+      { label: "Sharing", value: "10 Games" },
+      { label: "Number of downloaded games", value: "Two Games" },
+      { label: "Daily login", value: "7 Days" },
     ],
   },
   {
@@ -34,15 +33,14 @@ const items: Item[] = [
     title: "Second Card",
     topic: "Discount Card 30%",
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, laborum cumque dignissimos quidem atque et eligendi aperiam voluptates beatae maxime.",
+      "Take advantage of the discount now",
     longDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, reiciendis suscipit nobis nulla animi, modi explicabo quod corrupti impedit illo, accusantium in eaque nam quia adipisci aut distinctio porro eligendi. Reprehenderit nostrum consequuntur ea! Accusamus architecto dolores modi ducimus facilis quas voluptatibus! Tempora ratione accusantium magnam nulla tenetur autem beatae.",
+      "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "Used Time", value: "6 hours" },
-      { label: "Charging port", value: "Type-C" },
-      { label: "Compatible", value: "Android" },
-      { label: "Bluetooth", value: "5.3" },
-      { label: "Controlled", value: "Touch" },
+      { label: "points", value: "75 point" },
+      { label: "Sharing", value: "15 Games" },
+      { label: "Number of downloaded games", value: "Five Games" },
+      { label: "Daily login", value: "14 Days" },
     ],
   },
   {
@@ -50,15 +48,14 @@ const items: Item[] = [
     title: "Third Card",
     topic: "Discount Card 50%",
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, laborum cumque dignissimos quidem atque et eligendi aperiam voluptates beatae maxime.",
+      "Take advantage of the discount now",
     longDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, reiciendis suscipit nobis nulla animi, modi explicabo quod corrupti impedit illo, accusantium in eaque nam quia adipisci aut distinctio porro eligendi. Reprehenderit nostrum consequuntur ea! Accusamus architecto dolores modi ducimus facilis quas voluptatibus! Tempora ratione accusantium magnam nulla tenetur autem beatae.",
+      "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "Used Time", value: "6 hours" },
-      { label: "Charging port", value: "Type-C" },
-      { label: "Compatible", value: "Android" },
-      { label: "Bluetooth", value: "5.3" },
-      { label: "Controlled", value: "Touch" },
+      { label: "points", value: "100 point" },
+      { label: "Sharing", value: "20 Games" },
+      { label: "Number of downloaded games", value: "Ten Games" },
+      { label: "Daily login", value: "21 Days" },
     ],
   },
   {
@@ -66,15 +63,14 @@ const items: Item[] = [
     title: "fourth Card",
     topic: "Discount Card 70%",
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, laborum cumque dignissimos quidem atque et eligendi aperiam voluptates beatae maxime.",
+      "Take advantage of the discount now",
     longDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, reiciendis suscipit nobis nulla animi, modi explicabo quod corrupti impedit illo, accusantium in eaque nam quia adipisci aut distinctio porro eligendi. Reprehenderit nostrum consequuntur ea! Accusamus architecto dolores modi ducimus facilis quas voluptatibus! Tempora ratione accusantium magnam nulla tenetur autem beatae.",
+      "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "Used Time", value: "6 hours" },
-      { label: "Charging port", value: "Type-C" },
-      { label: "Compatible", value: "Android" },
-      { label: "Bluetooth", value: "5.3" },
-      { label: "Controlled", value: "Touch" },
+      { label: "points", value: "125 point" },
+      { label: "Sharing", value: "25 Games" },
+      { label: "Number of downloaded games", value: "Thirteen Games" },
+      { label: "Daily login", value: "28 Days" },
     ],
   },
   {
@@ -82,15 +78,14 @@ const items: Item[] = [
     title: "Fifth Card",
     topic: "Discount Card 85%",
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, laborum cumque dignissimos quidem atque et eligendi aperiam voluptates beatae maxime.",
+      "Take advantage of the discount now",
     longDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, reiciendis suscipit nobis nulla animi, modi explicabo quod corrupti impedit illo, accusantium in eaque nam quia adipisci aut distinctio porro eligendi. Reprehenderit nostrum consequuntur ea! Accusamus architecto dolores modi ducimus facilis quas voluptatibus! Tempora ratione accusantium magnam nulla tenetur autem beatae.",
+      "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "Used Time", value: "6 hours" },
-      { label: "Charging port", value: "Type-C" },
-      { label: "Compatible", value: "Android" },
-      { label: "Bluetooth", value: "5.3" },
-      { label: "Controlled", value: "Touch" },
+      { label: "points", value: "200 point" },
+      { label: "Sharing", value: "25 Games" },
+      { label: "Number of downloaded games", value: "Fifteen Games" },
+      { label: "Daily login", value: "35 Days" },
     ],
   },
   {
@@ -98,15 +93,14 @@ const items: Item[] = [
     title: "sixth Card",
     topic: "Discount Card 100%",
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, laborum cumque dignissimos quidem atque et eligendi aperiam voluptates beatae maxime.",
+      "Take advantage of the discount now",
     longDesc:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, reiciendis suscipit nobis nulla animi, modi explicabo quod corrupti impedit illo, accusantium in eaque nam quia adipisci aut distinctio porro eligendi. Reprehenderit nostrum consequuntur ea! Accusamus architecto dolores modi ducimus facilis quas voluptatibus! Tempora ratione accusantium magnam nulla tenetur autem beatae.",
+      "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "Used Time", value: "6 hours" },
-      { label: "Charging port", value: "Type-C" },
-      { label: "Compatible", value: "Android" },
-      { label: "Bluetooth", value: "5.3" },
-      { label: "Controlled", value: "Touch" },
+      { label: "points", value: "400 point" },
+      { label: "Sharing", value: "30 Games" },
+      { label: "Number of downloaded games", value: "eighteen Games" },
+      { label: "Daily login", value: "42 Days" },
     ],
   },
 ];
@@ -151,14 +145,24 @@ export default function Carousel() {
   const currentItem = items[currentIndex];
 
 
-  let translateY = () => {
-    if (showDetail) return "translateY(-50%)";
+  const [loading, setLoading] = useState(false);
 
+  
+  const [content, setContent] = useState('');
+
+  const dis = () => {
+    
+    content.toString()
   }
+
 
 
   return (
     <div className="description relative mx-auto  w-[90%] h-screen md:h-[800px] overflow-hidden mt-8 rounded-xl">
+      <div className="!flex items-center justify-center relative ">
+
+      <h1 className="absolute text-white text-3xl font-bold mt-36 ">🎖️gifts game here enjoy the discount cards</h1>
+      </div>
       {/* Glow background */}
       <motion.div
         className="absolute -z-10 top-1/2 left-1/2 w-[500px] h-[300px] rounded-[20%_30%_80%_10%] blur-[120px]"
@@ -181,7 +185,7 @@ export default function Carousel() {
                 key={currentItem.img + String(showDetail)}
                 src={currentItem.img}
                 alt={currentItem.topic}
-                className="absolute left-0 mt-72 !w-[30%] md:w-[400px] overflow-hidden animate-pulse "
+                className="absolute left-0 !w-[30%] md:w-[400px] overflow-hidden animate-pulse shadow-md mt-36 "
                 initial={{ opacity: 0, x: 40, filter: "blur(10px)" }}
                 animate={{ opacity: 1, x: showDetail ? -40 : 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, x: -40, filter: "blur(10px)" }}
@@ -198,7 +202,7 @@ export default function Carousel() {
               key={currentItem.img + String(showDetail)}
               src={currentItem.img}
               alt={currentItem.topic}
-              className="absolute  mt-60 !w-[35%] md:w-[400px]  "
+              className="absolute  mt-44 mr-4 !w-[30%] md:w-[400px]  "
               initial={{ opacity: 0, x: 40, filter: "blur(10px)" }}
               animate={{ opacity: 1, x: showDetail ? -40 : 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, x: -40, filter: "blur(10px)" }}
@@ -255,7 +259,7 @@ export default function Carousel() {
               <motion.h2 variants={detailChild} className="text-3xl md:text-5xl font-bold">
                 {currentItem.topic}
               </motion.h2>
-              <motion.p variants={detailChild} className="text-white/80 mt-4">
+              <motion.p variants={detailChild} className="text-green-500 font-bold mt-4">
                 {currentItem.longDesc}
               </motion.p>
               <motion.div
@@ -271,13 +275,12 @@ export default function Carousel() {
                     className="min-w-[90px] text-center flex-shrink-0"
                   >
                     <p className="font-semibold text-sm">{spec.label}</p>
-                    <p>{spec.value}</p>
+                    <p className="text-yellow-500 font-bold">{spec.value}</p>
                   </motion.div>
                 ))}
               </motion.div>
               <motion.div variants={detailChild} className="mt-6 flex justify-end gap-2">
-                <button className="border bg-indigo-500 hover:bg-indigo-400 rounded-2xl px-4 py-2">ADD TO CART</button>
-                <button className="bg-indigo-500 hover:bg-indigo-400 text-white px-4 py-2 rounded-2xl">Collecting</button>
+                <button value={content} onClick={dis} disabled={loading || content.trim() === ""} className="bg-purple-950 font-bold shadow-lg hover:bg-indigo-400 text-white px-4 py-2 rounded-2xl"> {loading ? "Collecting" : "Done"  } </button>
               </motion.div>
             </motion.div>
           )}

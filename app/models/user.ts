@@ -25,6 +25,10 @@ export interface IUser extends Document {
   gamesRating: mongoose.Types.ObjectId[];
   bio: string;
   createdAt: Date;
+  //pints user
+  points: number;
+  level: string;
+  userId?: Number;
 }
 
 // ✅ سكيم الصورة
@@ -52,6 +56,11 @@ const userSchema = new Schema<IUser>(
     gamesRating: [{ type: Schema.Types.ObjectId, ref: "GameReview" }],
     bio: { type: String, maxlength: 500, default: "No bio" },
     createdAt: { type: Date, default: Date.now },
+    
+    points: { type: Number, default: 0 }, // 
+    level: { type: String, default: "LV-1" }, 
+    
+    
   },
   { timestamps: true }
 );
