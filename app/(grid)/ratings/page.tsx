@@ -9,6 +9,7 @@ import { FaGamepad } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 //<icon>
 import { GiTrophyCup } from "react-icons/gi";
+import ThreeBackground from "@/app/components/ThreeBackground";
 //</icon>//
 const ratings = [
   { name: "Best Game of the Year", key: "best" },

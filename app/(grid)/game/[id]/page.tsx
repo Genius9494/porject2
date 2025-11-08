@@ -1,17 +1,15 @@
 import { getGame } from "@/app/api/api";
 import GameDetails from "@/app/components/GameDetails";
-import { getReviews } from "@/lib/getReviews";
-import { getGameDetails } from "@/lib/raw";
 
 interface PageProps {
-  params: {
-    id: string
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function Page({ params }: PageProps) {
-  const id = decodeURIComponent(params.id);
-  const game = await getGame(id);
+  const { id } = await params;
+  const decodedId = decodeURIComponent(id);
+  const game = await getGame(decodedId);
+
 
 
 
@@ -40,25 +38,17 @@ export default async function Page({ params }: PageProps) {
       screenshots={screenshots}
       similar={similar}
       initialReviews={reviews}
+      // developers={data.developers}
+      // publishers={data.publishers}
+      // achievements_count={data.achievements_count}
+      // name={data.name}
+      // community_rating={data.community_rating}
+      // clip={data.clip}
     />
 
   );
 };
 
-{/* <GameDetails
-  gameData={JSON.parse(JSON.stringify(data))}
-
-  // gameData={data}
-  screenshots={screenshots}
-  similar={similar}
-  initialReviews={reviews}
-  developers={data.developers}
-  publishers={data.publishers}
-  achievements_count={data.achievements_count}
-  name={data.name}
-  community_rating={data.community_rating}
-  clip={data.clip}
-/> */}
 
 
 

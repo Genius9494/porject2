@@ -2,10 +2,12 @@
 
 import React from "react";
 import { toast } from "react-toastify";
+import ShinyText from "@/components/ShinyText";
+
 
 type BuyButtonProps = {
-  name: string;   // اسم المنتج
-  price: number;  // السعر بالدولار
+  name: string;   
+  price: number;  
 };
 
 const BuyButton: React.FC<BuyButtonProps> = ({ name, price }) => {
@@ -49,7 +51,9 @@ const BuyButton: React.FC<BuyButtonProps> = ({ name, price }) => {
       className="bg-green-600 hover:bg-red-700 text-white py-2 px-4 rounded-xl mt-6 h-10 animate-pulse delay-75 text-sm"
     >
       Buy with ${(price / 100).toFixed(2)}
+      
     </button>
+    
   );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { FiAward, FiFeather, FiActivity } from "react-icons/fi";
 import { GiRoyalLove } from "react-icons/gi";
 import { SiHomebridge } from "react-icons/si";
@@ -12,10 +12,12 @@ import { Settings } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryClient } from "@tanstack/react-query";
 import { GrCubes } from "react-icons/gr";
-import { FaMicroblog } from "react-icons/fa6";
+import { FaMicroblog, FaWheelchair } from "react-icons/fa6";
 import BackToTopButton from "../BackToTopButton";
-import { TbGitCompare } from "react-icons/tb";
+import { TbGitCompare, TbWheel } from "react-icons/tb";
 import { useCart } from "@/app/store/cartStore";
+import { useTranslation } from "@/lib/TranslationProvider";
+import ShinyText from "@/components/ShinyText";
 
 
 export const NAV_LINKS = [
@@ -28,9 +30,10 @@ export const NAV_LINKS = [
   { link: "/discount", label: "Discounts section", icon: <FiAward /> },
   { link: "/compare", label: "Compare", icon: <TbGitCompare /> },
   { link: "/gifts", label: "Gifts Section", icon: <TbGitCompare /> },
-
-
+  { link: "/spin", label: "Wheel", icon: <TbWheel /> },
   { link: "/blog", label: "Blogs", icon: <FaMicroblog /> },
+
+  
   // { link: "/admin", label: "role", icon: <FiAward /> },
 ];
 
@@ -39,17 +42,36 @@ const SideBar = () => {
   const queryClient = useQueryClient();
 
 
+    const { t, lang, setLang } = useTranslation();
+  
+
+useEffect(() => {
+    
+
+
+    // إعداد الاتجاه واللغة في HTML
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }, []);
+
+ 
+
+  useEffect(() => {
+    // تحديث اللغة والاتجاه في DOM عندما تتغير من السياق
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }, [lang]);
 
 
   return (
     <div className="col-span-2">
       <BackToTopButton />
-      <div className="py-5 px-7 h-screen sticky inset-0 flex flex-col items-start bg-black/30 text-gray-50">
+      <div className="py-2 px-7 h-screen sticky inset-0 flex flex-col items-start bg-black/30 text-gray-50">
         <Logo />
 
         {/* ✅ بعد تسجيل الدخول */}
         {isLoading ? (
-          <div className="w-full mb-6 mt-4 space-y-2">
+          <div className="w-full mb-6 mt-4 space-y-1">
             <Skeleton className="h-10 w-10 rounded-full" />
             <Skeleton className="h-4 w-[120px]" />
           </div>
@@ -70,7 +92,7 @@ const SideBar = () => {
           </div>
         ) : null}
 
-        <div className="-space-y-2">
+        <div className=" -space-y-2 ">
           {NAV_LINKS.map((navLink, i) => (
             <NavLink key={i} navLink={navLink} />
           ))}
@@ -83,7 +105,7 @@ const SideBar = () => {
             <Skeleton className="h-4 w-[100px]" />
           </div>
         ) : user?.data ? (
-          <div className="mt-auto w-full space-y-2">
+          <div className=" w-full -translate-y-3">
 
             <NavLink
               navLink={{
@@ -92,9 +114,11 @@ const SideBar = () => {
                 icon: <Settings />,
               }}
             />
+              
 
           </div>
         ) : null}
+        
       </div>
     </div>
   );

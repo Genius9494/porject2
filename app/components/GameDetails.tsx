@@ -5,7 +5,7 @@ import SwiperCards from './SwiperCards';
 import GamesSlider from './GamesSlider';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
-import { styleText } from 'util';
+// import { styleText } from 'util';
 import BuyButton from './BuyButton';
 import { normalizeGame, Game } from '@/types';
 import { useDiscountStore } from '../store/discountStore';
@@ -13,10 +13,12 @@ import { FaCartShopping } from "react-icons/fa6";
 import { useCart } from "../../app/store/cartStore";
 import { useGetUser } from '@/lib/queryFunctions';
 
-import User from './User';
+// import User from './User';
 import { Skeleton } from '@mui/material';
 
 import { getGameDetails } from '@/lib/raw';
+
+import { useCollected } from '../context/CollectedContext';
 
 
 type Reply = {
@@ -83,26 +85,29 @@ export default function GameDetails({
     discountPercent,
     discountEndTime,
     game: rawGame = false,
+    // params: {params: {slug: string}}
 }: GameCardProps | any) {
     const {
-        id,
-        description_raw,
-        website,
+        // id,
+        // description_raw,
+        // website,
         developers,
         publishers,
         achievements_count,
-        reactions,
-        playtime,
-        reddit_url,
-        reddit_name,
-        reddit_description,
-        reddit_logo,
-        community_rating,
-        clip,
-        twitch_count,
+        // reactions,
+        // playtime,
+        // reddit_url,
+        // reddit_name,
+        // reddit_description,
+        // reddit_logo,
+        // community_rating,
+        // clip,
+        // twitch_count,
         name,
     } = gameData;
 
+    // const gameInfo = await getGameDetails(params.slug);
+    // const { website, stores } = gameInfo;
 
     const [localReviews, setLocalReviews] = useState<Review[]>(initialReviews || []);
     // console.log("reddit_logo:", gameData.reddit_logo);
@@ -134,6 +139,11 @@ export default function GameDetails({
     const [isReplying, setIsReplying] = useState<{ [reviewId: string]: boolean }>({});
     const [showReplies, setShowReplies] = useState<{ [reviewId: string]: boolean }>({});
     const { user, isLoading } = useGetUser();
+    const { setUserPoints } = useCollected(); // إدارة النقاط الجديدة
+
+
+
+
 
 
 
@@ -153,6 +163,7 @@ export default function GameDetails({
         const max = 700;
         return +(Math.random() * (max - min) + min).toFixed(2);
     }, []);
+
 
 
 
@@ -197,17 +208,23 @@ export default function GameDetails({
     //reply
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        if (!comment) {
-            toast("You Have Not Written Your Comment");
-            return;
-        }
-        if (!rating) {
-            toast("You Haven't Rated The Game");
-            return;
-        }
+        if (!comment) return toast("You Have Not Written Your Comment");
+        if (!rating) return toast("You Haven't Rated The Game");
 
         setIsSubmitting(true);
+
+        // إنشاء تعليق مؤقت للعرض الفوري
+        const tempReview: Review = {
+            _id: `temp-${Date.now()}`,
+            comment,
+            rating,
+            username: user?.data?.name || "Guest",
+            createdAt: new Date().toISOString(),
+            replies: []
+        };
+        setLocalReviews(prev => [tempReview, ...prev]);
+        setComment("");
+        setRating(0);
 
         try {
             const res = await fetch(`/api/reviews/${gameData.id}`, {
@@ -215,31 +232,39 @@ export default function GameDetails({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     rating,
-                    comment,
-                    userId: user?.data?._id || "guest343242", // ✅ التعديل هنا
-                    username: user?.data?.name || "Guest",
-                    replies: [],
+                    comment: tempReview.comment,
+                    userId: user?.data?._id || "guest343242",
+                    username: tempReview.username,
+                    replies: []
                 }),
             });
 
             if (res.ok) {
-                const newReview = await res.json();
-                // ✅ أضف التعليق الجديد مباشرة
-                setLocalReviews((prev) => [newReview, ...prev]);
-                setComment("");
-                setRating(0);
-            } else {
-                const errorText = await res.text();
-                console.error("Failed To Save Comment:", errorText);
-                toast(`Failed To Save Comment: ${errorText}`);
+                const payload = await res.json();
+                // إذا السيرفر يرجع: { review, points, level }
+                const newReview = payload.review ?? payload; // مرن
+                const newPoints = payload.points;
+
+                setLocalReviews(prev => [newReview, ...prev]);
+
+                if (typeof newPoints === 'number') {
+                    setUserPoints(newPoints); // ← هنا نحدّث الـContext فوراً
+                } else {
+                    // بديل: إن لم يرجع السيرفر نقاط، يمكنك زيادة نقطتك مثلاً 10 نقاط:
+                    // setUserPoints(prev => prev + 10);
+                }
             }
+
         } catch (err) {
-            console.error("An Error Occurred While Sending The Comment", err);
-            toast("An Error Occurred While Sending The Comment");
+            console.error(err);
+            toast("Error while sending comment");
+            setLocalReviews(prev => prev.filter(r => r._id !== tempReview._id));
         } finally {
             setIsSubmitting(false);
         }
     };
+
+
 
     const handleReplySubmit = async (reviewId: string) => {
         const comment = replyText[reviewId];
@@ -253,14 +278,14 @@ export default function GameDetails({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     comment,
-                    userId: user?.data?._id || "guest343242", // ✅ التعديل هنا
+                    userId: user?.data?._id || "guest343242",
                     username: user?.data?.name || "Guest",
                 }),
             });
 
             if (res.ok) {
                 const updatedReview = await res.json();
-                // ✅ حدث المراجعة في القائمة
+                //  حدث المراجعة في القائمة
                 setLocalReviews((prev) =>
                     prev.map((r) => (r._id === reviewId ? updatedReview : r))
                 );
@@ -294,21 +319,51 @@ export default function GameDetails({
 
 
 
-    
-    // function getLevelColor(level?: string) {
-    //     switch (level) {
-    //         case "مبتدئ":
-    //             return "bg-green-500";
-    //         case "محترف":
-    //             return "bg-blue-500";
-    //         case "خبير":
-    //             return "bg-yellow-500";
-    //         case "أسطورة":
-    //             return "bg-red-500";
-    //         default:
-    //             return "bg-gray-500";
-    //     }
-    // }
+    // تحديث نقاط المستخدم في الـ DB
+    useEffect(() => {
+        if (user?.data?._id) {
+            fetch(`/api/users/${user.data._id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data?.points !== undefined) {
+                        setUserPoints(data.points); // حفظ النقاط الموجودة في DB
+                    }
+                })
+                .catch(err => console.error("Error loading points:", err));
+        }
+    }, [user, setUserPoints]);
+
+
+
+
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const res = await fetch(`/api/reviews/${gameData.id}`);
+                if (res.ok) {
+                    const reviews = await res.json();
+                    setLocalReviews(reviews);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        if (gameData.id) fetchReviews();
+    }, [gameData.id]);
+
+
+
+
+
+
+    const uniqueReviews = localReviews.filter(
+        (r, index, self) => index === self.findIndex(rv => rv._id === r._id)
+    );
+
+
+
 
 
     return (
@@ -414,6 +469,8 @@ export default function GameDetails({
 
 
 
+
+
                 </div>
             </div>
 
@@ -489,7 +546,7 @@ export default function GameDetails({
                         type="submit"
                         className="mt-4 px-4 py-2 bg-green-600 text-white rounded-2xl animate-bounce"
                         disabled={isSubmitting}
-                        
+
                     >
                         {isSubmitting ? 'Sent Now...' : 'Sent'}
                     </button>
@@ -499,22 +556,19 @@ export default function GameDetails({
             {/* التعليقات */}
             <div className="mt-10">
                 <h2 className="text-xl font-bold mb-4"> Comments </h2>
+                
+
                 {localReviews.length > 0 ? (
-                    localReviews.map((r) => (
-                        <div key={r._id} className="mb-4 border border-pink-300 p-4 rounded-xl">
+                    localReviews.map((r, index) => (
+                        <div key={`${r._id}-${index}`} className="mb-4 border border-pink-300 p-4 rounded-xl">
                             <div className="flex items-center justify-between">
 
                                 <div className="flex items-center gap-1">
                                     {renderStars(r.rating)}
-                                    <span className="text-xs text-green-300">{r.rating.toFixed(1) || "N/A"}</span>
-                                    {user?.data?.points && (
-                                        <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
-                                            <div
-                                                className="bg-green-500 h-2 rounded-full"
-                                                style={{ width: `${Math.min((user.data.points / 1000) * 100, 100)}%` }}
-                                            />
-                                        </div>
-                                    )}
+                                    <span className="text-xs text-green-300">
+                                        {r.rating !== undefined && r.rating !== null ? r.rating.toFixed(1) : "N/A"}
+                                    </span>
+
 
 
                                 </div>
@@ -600,3 +654,4 @@ export default function GameDetails({
 
     );
 }
+

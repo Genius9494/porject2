@@ -34,7 +34,7 @@ const CardInfo = ({
       </div>
       <h1 className="text-yellow-300 text-2xl font-semibold">{title}</h1>
       <p className="text-base  text-gray-200">{desc}</p>
-      <Button className={`rounded-full mt-5 ${btnClasses || "text-gray-50"}`}>
+      <Button className={`bg-green-500 hover:bg-green-400 shadow-[0_0_15px_#22c55e] rounded-full mt-5 ${btnClasses || "text-gray-50"}`}>
         {textBtn || "Find out more !"}
       </Button>
     </MotionItem>

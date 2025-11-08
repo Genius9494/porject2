@@ -20,8 +20,8 @@ import { useDiscountStore } from "@/app/store/discountStore";
 
 
 
-import YouTubePlayer from "./YouTubePlayer";
-import review from "../models/review";
+// import YouTubePlayer from "./YouTubePlayer";
+// import review from "../models/review";
 import { getFullGameDetails } from "../api/api";
 
 
@@ -70,7 +70,7 @@ const GameCard = ({ game: rawGame, images, wishlist = false,gameData,  image, di
   const game = normalizeGame(rawGame);
   
 
-  const [videoId, setVideoId] = useState<string | null>(null);
+  // const [videoId, setVideoId] = useState<string | null>(null);
 
   const price = React.useMemo(() => {
     const min = 100;
@@ -171,24 +171,24 @@ const GameCard = ({ game: rawGame, images, wishlist = false,gameData,  image, di
     parent_platforms = [],
     rating = 0,
     released = "Unknown",
-    playtime,
-    slug = "default-slug",
-    tba = false,
-    rating_top = 0,
-    ratings = [],
-    ratings_count = 0,
-    reviews_text_count = 0,
-    added = 0,
-    developers = [],
-    publishers = [],
-    website = "",
-    achievements_count = 0,
-    movies_count = 0,
-    community_rating = 0,
-    reddit_url = "",
-    reddit_name = "",
-    reddit_description = "",
-    reddit_logo = "",
+    // playtime,
+    // slug = "default-slug",
+    // tba = false,
+    // rating_top = 0,
+    // ratings = [],
+    // ratings_count = 0,
+    // reviews_text_count = 0,
+    // added = 0,
+    // developers = [],
+    // publishers = [],
+    // website = "",
+    // achievements_count = 0,
+    // movies_count = 0,
+    // community_rating = 0,
+    // reddit_url = "",
+    // reddit_name = "",
+    // reddit_description = "",
+    // reddit_logo = "",
     
   } = game;
 
@@ -198,15 +198,15 @@ const GameCard = ({ game: rawGame, images, wishlist = false,gameData,  image, di
   const { cart, addToCart } = useCart();
   const isInCart = cart.some(item => item.id === game.id.toString());
 
-  const handleAddToCart = () => {
-    addToCart({
-      id: id.toString(),
-      name: game.name,
-      price: discountedPrice,
-      quantity: 1,
-    });
-    setOpen(true);
-  };
+  // const handleAddToCart = () => {
+  //   addToCart({
+  //     id: id.toString(),
+  //     name: game.name,
+  //     price: discountedPrice,
+  //     quantity: 1,
+  //   });
+  //   setOpen(true);
+  // };
   
 
   const platforms = parent_platforms?.map((platformObj) => platformObj.platform.slug);
@@ -350,11 +350,11 @@ const GameCard = ({ game: rawGame, images, wishlist = false,gameData,  image, di
           <div className="text-sm font-bold">
             {hasDiscount ? (
               <div className="flex flex-col items-start gap-1">
-                <span className="text-red-500">
-                  Discounted: ${(discountedPrice / 100).toFixed(2)}
-                </span>
                 <span className="line-through text-green-600 text-sm">
                   Original: ${(price / 100).toFixed(2)}
+                </span>
+                <span className="text-red-500">
+                  Discounted: ${(discountedPrice / 100).toFixed(2)}
                 </span>
                 {timeLeft && (
                   <span className="text-yellow-400 text-xs">

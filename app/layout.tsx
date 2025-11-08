@@ -10,6 +10,7 @@ import { ThemeProvider } from "next-themes";
 import { TranslationProvider } from "@/lib/TranslationProvider";
 
 import { Toaster } from "react-hot-toast";
+import { CollectedProvider } from "./context/CollectedContext";
 
 export const metadata: Metadata = {
   title: "Genius Gaming",
@@ -27,18 +28,20 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <QueryProvider>
             <TranslationProvider>
-              <ToastContainer
-                position="top-center"
-                autoClose={2500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                pauseOnFocusLoss
-                pauseOnHover={false}
-                theme="dark"
-              />
-              {children}
-              <Toaster position="top-center" reverseOrder={false} />
+              <CollectedProvider>
+                <ToastContainer
+                  position="top-center"
+                  autoClose={2500}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  pauseOnHover={false}
+                  theme="dark"
+                />
+                {children}
+                <Toaster position="top-center" reverseOrder={false} />
+                </CollectedProvider >
             </TranslationProvider>
           </QueryProvider>
         </ThemeProvider>

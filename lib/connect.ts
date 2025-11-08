@@ -1,32 +1,34 @@
 import mongoose from "mongoose";
 
-let isConnected = false;
+let isConnected = false; // 🔒 لتتبع حالة الاتصال الحالية
 
-const connect = async () => {
-  if (isConnected) return; // إذا كان الاتصال قائمًا مسبقًا، لا حاجة لإعادة الاتصال
+export default async function connect() {
+  if (isConnected && mongoose.connection.readyState === 1) {
+    // ✅ إذا كان متصلاً مسبقًا بشكل صحيح، لا نحاول الاتصال مجددًا
+    return;
+  }
 
-  // تحقق من وجود متغير البيئة MONGO_URI
-  if (!process.env.MONGO_URI) {
-    console.error("❌ MONGO_URI is not defined in the environment variables.");
-    throw new Error("MONGO_URI is not defined");
+  const uri = process.env.MONGO_URI;
+
+  if (!uri) {
+    console.error("❌ MONGO_URI is not defined in environment variables.");
+    throw new Error("MONGO_URI is missing");
   }
 
   try {
-    // الاتصال بقاعدة البيانات
-    console.log("Attempting to connect to MongoDB...");
-    await mongoose.connect(process.env.MONGO_URI, {
+    console.log("⚙️ Attempting to connect to MongoDB...");
+
+    await mongoose.connect(uri, {
       dbName: "learning",
+      // يمكنك إضافة خيارات إضافية لو أردت مثل:
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
     });
-    
-    // إذا تم الاتصال بنجاح
+
     isConnected = true;
-    console.log("✅ Mongo connected successfully.");
-  } catch (err) {
-    // إذا فشل الاتصال
-    console.error("❌ Mongo connection error:", err);
-    throw err; // رمي الخطأ مجددًا لكي يتم التعامل معه في مكان آخر إذا لزم الأمر
+    console.log("✅ MongoDB connected successfully.");
+  } catch (error) {
+    console.error("❌ MongoDB connection failed:", error);
+    throw error;
   }
-};
-
-export default connect;
-
+}

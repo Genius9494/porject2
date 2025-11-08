@@ -12,7 +12,8 @@ import {
     Legend,
     CartesianGrid,
 } from "recharts";
-import GridContainer from "@/app/components/defaults/GridContainer";
+
+
 
 type GameOption = {
     id: number;
@@ -123,9 +124,14 @@ export default function ComparePage() {
             ]
             : [];
 
+    
+
     return (
 
         <div id="cart" className=" rounded-2xl mt-8 relative">
+            
+            <span className="orb-moving"></span>
+
             <div className="p-6 max-w-5xl mx-auto  ">
                 <h1 className="text-3xl font-bold mb-6 text-center">🎮 Compare two games</h1>
 
@@ -140,6 +146,8 @@ export default function ComparePage() {
                             value={query1}
                             onChange={(e) => setQuery1(e.target.value)}
                         />
+                        <span className="orb-moving"></span>
+                        
                         {options1.length > 0 && (
                             <ul className="absolute  border rounded-lg shadow w-full z-10 max-h-64 overflow-y-auto">
                                 {options1.map((opt) => (
@@ -167,6 +175,8 @@ export default function ComparePage() {
                             onChange={(e) => setQuery2(e.target.value)}
                             className="p-5 rounded-lg text-left"
                         />
+                        <span className="orb-moving"></span>
+
                         {options2.length > 0 && (
                             <ul id="cart" className="absolute bg-white border rounded-lg shadow w-full z-10 max-h-64 overflow-y-auto">
                                 {options2.map((opt) => (

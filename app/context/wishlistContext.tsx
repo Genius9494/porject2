@@ -11,7 +11,6 @@ import {
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import { useGetUser } from "@/lib/queryFunctions";
 import Spinner from "../components/defaults/Spinner";
-import { toast } from "react-toastify";
 import { addToWishList, removeFromWishList } from "../actions/actions";
 import { useQueryClient } from "@tanstack/react-query";
 

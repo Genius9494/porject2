@@ -20,9 +20,9 @@ const AddToWishList = ({
   const toggleWishlist = async () => {
     try {
       setLoading(true);
-      const wasInWishlist = wishlist.includes(gameId); // ✅ نأخذ القيمة قبل التغيير
+      const wasInWishlist = wishlist.includes(gameId); //  نأخذ القيمة قبل التغيير
 
-      await handleAddToWishlist(gameId); // ✅ تحديث الـ localStorage أو المستخدم
+      await handleAddToWishlist(gameId); //  تحديث الـ localStorage أو المستخدم
 
       toast.success(
         wasInWishlist
@@ -50,7 +50,7 @@ const AddToWishList = ({
     }
   };
 
-  const isInWishlist = wishlist.includes(gameId); // ✅ الآن هذا يعيد القيمة الحقيقية بعد التحديث
+  const isInWishlist = wishlist.includes(gameId); //  الآن هذا يعيد القيمة الحقيقية بعد التحديث
 
   if (plus) {
     return isInWishlist ? (

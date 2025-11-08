@@ -18,7 +18,7 @@ const Hero = () => {
                 <div className="absolute w-[120%] h-[120%] rounded-full pointer-events-none animate-spin-slow">
                   <div className="orb"></div>
                 </div>
-                {/* الفيديو */}
+
                 <video
                   className="relative z-0 w-full h-full object-cover rounded-2xl"
                   autoPlay
@@ -50,7 +50,7 @@ const Hero = () => {
           {
             card: (
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* حاوية الدوران */}
+                
                 <div className="absolute w-[120%] h-[120%] rounded-full pointer-events-none animate-spin-slow">
                   <div className="orb"></div>
                 </div>
@@ -76,7 +76,7 @@ const Hero = () => {
           {
             card: (
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* حاوية الدوران */}
+
                 <div className="absolute w-[120%] h-[120%] rounded-full pointer-events-none animate-spin-slow">
                   <div className="orb"></div>
                 </div>
@@ -124,7 +124,7 @@ const Hero = () => {
           {
             card: (
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* حاوية الدوران */}
+                
                 <div className="absolute w-[120%] h-[120%] rounded-full pointer-events-none animate-spin-slow">
                   <div className="orb"></div>
                 </div>

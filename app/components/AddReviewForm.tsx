@@ -14,6 +14,7 @@ const AddReviewForm = ({ gameId }: { gameId: string }) => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ gameId, rating, comment }),
+            cache: "no-store"
         });
 
         if (res.ok) {

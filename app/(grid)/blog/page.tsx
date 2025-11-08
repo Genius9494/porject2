@@ -1,13 +1,12 @@
-// app/blog/page.tsx (Server Component)
 import { getAllPosts } from "@/lib/getBlogPosts";
 import BlogCarousel from "./BlogCarousel";
 import MaxWidthWrapper from "@/app/components/defaults/MaxWidthWrapper";
 
 
-export const revalidate = 60; // إعادة التوليد كل 60 ثانية
+export const revalidate = 60; //regenration every 60 seconds
 
 export default function BlogPage() {
-  const posts = getAllPosts(); // يشتغل هنا لأنه سيرفر
+  const posts = getAllPosts(); //server
   return (
     <MaxWidthWrapper className="maxee mt-8 rounded-2xl h-screen">
     <main className="p-8 mx-auto mt-5 rounded-2xl">

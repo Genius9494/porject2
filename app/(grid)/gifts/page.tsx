@@ -1,9 +1,16 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import confetti from "canvas-confetti";
+import { useCollected } from "@/app/context/CollectedContext";
+import { useGetUser } from "@/lib/queryFunctions";
+
+
+
 interface Item {
+  id: string;
   img: string;
   title: string;
   topic: string;
@@ -14,6 +21,8 @@ interface Item {
 
 const items: Item[] = [
   {
+    id: "gift-1",
+
     img: "/img1.png",
     title: "First Card",
     topic: "Discount Card 10%",
@@ -22,13 +31,15 @@ const items: Item[] = [
     longDesc:
       "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "points", value: "50 point" },
-      { label: "Sharing", value: "10 Games" },
+      { label: "points", value: "1 point  " },
+      { label: "Sharing", value: "10 Games " },
       { label: "Number of downloaded games", value: "Two Games" },
-      { label: "Daily login", value: "7 Days" },
+      { label: "Daily login", value: "7 Days " },
     ],
   },
   {
+    id: "gift-2",
+
     img: "/img2.png",
     title: "Second Card",
     topic: "Discount Card 30%",
@@ -37,13 +48,15 @@ const items: Item[] = [
     longDesc:
       "Fulfill the following conditions to obtain the discount card",
     specs: [
-      { label: "points", value: "75 point" },
-      { label: "Sharing", value: "15 Games" },
+      { label: "points", value: "80 point" },
+      { label: "Sharing", value: "15 Games " },
       { label: "Number of downloaded games", value: "Five Games" },
       { label: "Daily login", value: "14 Days" },
     ],
   },
   {
+    id: "gift-3",
+
     img: "/img3.png",
     title: "Third Card",
     topic: "Discount Card 50%",
@@ -59,6 +72,8 @@ const items: Item[] = [
     ],
   },
   {
+    id: "gift-4",
+
     img: "/img4.png",
     title: "fourth Card",
     topic: "Discount Card 70%",
@@ -74,6 +89,8 @@ const items: Item[] = [
     ],
   },
   {
+    id: "gift-5",
+
     img: "/img5.png",
     title: "Fifth Card",
     topic: "Discount Card 85%",
@@ -89,6 +106,8 @@ const items: Item[] = [
     ],
   },
   {
+    id: "gift-6",
+
     img: "/img6.png",
     title: "sixth Card",
     topic: "Discount Card 100%",
@@ -145,23 +164,126 @@ export default function Carousel() {
   const currentItem = items[currentIndex];
 
 
-  const [loading, setLoading] = useState(false);
 
-  
-  const [content, setContent] = useState('');
 
-  const dis = () => {
-    
-    content.toString()
+  const { setUserPoints } = useCollected();
+
+
+
+
+
+
+
+
+
+
+
+
+  // canvas 
+  const { userPoints, addCard, isCollected } = useCollected();
+  // const [userPoint, setUserPoint] = useState(0); // مثال
+  const [collected, setCollected] = useState(false);
+  const { user, isLoading } = useGetUser();
+
+
+
+  // points
+  const requiredPoints = parseInt(
+    currentItem.specs.find((spec) => spec.label === "points")?.value || "0"
+  );
+
+  const [animatedPoints, setAnimatedPoints] = useState(user?.data?.points ?? 0);
+
+  const [changeType, setChangeType] = useState<"increase" | "decrease" | null>(null);
+
+
+
+
+  // condition
+  // const canCollect = (user?.data?.points || 0) >= requiredPoints || "";
+
+
+  const userId = user?.data?._id;
+  const giftId = currentItem.id;
+
+
+  const alreadyCollected = Boolean(user?.data?.collectedGifts?.includes(giftId));
+  const canCollect = (user?.data?.points ?? 0) >= requiredPoints && !collected && !alreadyCollected;
+
+
+
+
+
+
+  // canvas
+  const handleCollect = async () => {
+    if (!canCollect || !userId) return;
+
+    setCollected(true); // optimistic UI
+
+
+    addCard({
+      topic: currentItem.title,
+      title: currentItem.title,
+      img: currentItem.img
+    });
+
+    confetti({
+      particleCount: 400,
+      spread: 200,
+      origin: { y: 0.6 }
+    });
+
+    try {
+      const res = await fetch(`/api/user/${userId}/updatePoints`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ delta: -requiredPoints, giftId }), // بالسالب + giftId
+      });
+
+      if (!res.ok) throw new Error("Failed to update points");
+
+      const data = await res.json();
+      // تحديث النقاط محليًا
+      setUserPoints(data.points);
+      setAnimatedPoints(data.points);
+
+      if (data.points > animatedPoints) {
+        setChangeType("increase");
+      } else if (data.points < animatedPoints) {
+        setChangeType("decrease");
+      }
+      setAnimatedPoints(data.points);
+
+      // بعد فترة قصيرة رجّع null
+      setTimeout(() => setChangeType(null), 800);
+
+      // إضافة الهدية محليًا لمنع الضغط مرة ثانية بدون إعادة تحميل
+      // @ts-ignore
+      user.data.collectedGifts = [...(user.data.collectedGifts ?? []), giftId];
+    } catch (error) {
+      console.error("Error updating points:", error);
+      setCollected(false); // rollback
+    }
+  };
+
+  // canvas //
+  const goToCollectedCards = () => {
+    window.location.href = "/collected"
   }
 
 
 
+
+
+
   return (
+
     <div className="description relative mx-auto  w-[90%] h-screen md:h-[800px] overflow-hidden mt-8 rounded-xl">
+
       <div className="!flex items-center justify-center relative ">
 
-      <h1 className="absolute text-white text-3xl font-bold mt-36 ">🎖️gifts game here enjoy the discount cards</h1>
+        <h1 className="absolute text-white text-3xl font-bold mt-36 ">🎖️gifts game here enjoy the discount cards</h1>
       </div>
       {/* Glow background */}
       <motion.div
@@ -268,19 +390,66 @@ export default function Carousel() {
               >
                 {currentItem.specs.map((spec, idx) => (
                   <motion.div
+                    id="specs"
                     key={spec.label + idx}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.25, delay: 0.25 + idx * 0.07 }}
-                    className="min-w-[90px] text-center flex-shrink-0"
+                    className="min-w-[90px] text-center flex-shrink-0 "
                   >
                     <p className="font-semibold text-sm">{spec.label}</p>
                     <p className="text-yellow-500 font-bold">{spec.value}</p>
                   </motion.div>
                 ))}
               </motion.div>
-              <motion.div variants={detailChild} className="mt-6 flex justify-end gap-2">
-                <button value={content} onClick={dis} disabled={loading || content.trim() === ""} className="bg-purple-950 font-bold shadow-lg hover:bg-indigo-400 text-white px-4 py-2 rounded-2xl"> {loading ? "Collecting" : "Done"  } </button>
+              <motion.div variants={detailChild} className="mt-6 flex-col justify-end gap-2 relative">
+                {/* user points */}
+                {user?.data && (
+                  <div className="mb-4">
+                    <div className="items-center gap-2">
+                      <span className="text-xs text-gray-400">
+                        (Level: {user.data.level || "LV-1"})
+                      </span>
+                      <span className="text-green-400 font-semibold">
+                        {user.data.name}
+                      </span>
+                    </div>
+
+                    {user.data !== undefined && (
+                      <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+                        <div
+                          className="bg-green-500 h-2 rounded-full"
+                          style={{
+                            width: `${Math.min((user.data.points / 2000) * 100, 100)}%`,
+                          }}
+                        />
+                      </div>
+                    )}
+                    <p className="text-xs text-gray-400 mt-1 flex flex-col">
+                     
+                        {animatedPoints} / {requiredPoints}
+
+                    </p>
+                  </div>
+                )}
+                {/* user points */}
+
+
+                <button
+                  onClick={handleCollect}
+                  disabled={!canCollect || collected}
+                  className={`px-2 py-2 mt-4 text-sm rounded-2xl font-bold shadow-lg text-white ${canCollect && !collected
+                    ? " bg-green-500 hover:bg-green-400 shadow-[0_0_15px_#22c55e] "
+                    : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                >
+                  {alreadyCollected || collected ? "Collected ✅" : "Collect"}
+
+                </button>
+
+                <button onClick={goToCollectedCards} className="absolute right-0 mt-16 font-bold px-2 py-2 text-sm rounded-2xl text-white bg-purple-950bg-green-500 hover:bg-green-400 shadow-[0_0_15px_#22c55e]">➡️ Collected Cards </button>
+
+
               </motion.div>
             </motion.div>
           )}

@@ -3,6 +3,8 @@ import GamesSlider from "../../components/GamesSlider";
 import Hero from "../../components/Hero";
 import { Suspense } from "react";
 import { Skeleton } from "@mui/material";
+import ThreeBackground from "../../components/ThreeBackground"
+import IntroAnimation from "@/app/components/defaults/IntroAnimation";
 
 
 export default async function Home() {
@@ -30,8 +32,9 @@ export default async function Home() {
       <Skeleton variant="rectangular" height={300} />
     </div>}>
       <section>
+        <IntroAnimation />
         <Hero />
-
+        
         <GamesSlider title="Top Games PS5" games={ps5.data.results} />
         <GamesSlider title="Top Games" games={results} />
         <GamesSlider screenBig big slidesPerView={2} title="PLAYSTATION" games={customGames.map((game) => game.data)} />

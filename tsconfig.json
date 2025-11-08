@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "osama1/next.config.ts", "osama8/next.config.ts", "app/(grid)/wishes"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "osama1/next.config.ts", "osama8/next.config.ts", "app/(grid)/wishes", "types"],
   "exclude": ["node_modules"]
 }

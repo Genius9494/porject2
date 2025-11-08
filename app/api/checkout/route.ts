@@ -25,7 +25,6 @@ export async function POST(request: Request) {
     // تحويل السعر إلى سنت
     const amount = Math.round(price * 100);
 
-    // استخدام NEXT_PUBLIC_URL أو localhost في التطوير
     const baseUrl = process.env.NEXT_PUBLIC_URL || 'http://localhost:3000';
 
     const session = await stripe.checkout.sessions.create({

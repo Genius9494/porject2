@@ -14,7 +14,6 @@ if (!cached) {
   cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
-let isConnected = false;
 
 async function connect(): Promise<typeof mongoose> {
   if (cached.conn) return cached.conn;

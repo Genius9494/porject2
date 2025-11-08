@@ -10,14 +10,14 @@
   import { NextApiRequest } from "next";
 
 
-  type DecodedUser = {
-    id: string;
-    email: string;
-    role: "admin" | "user";
-  };
+  // type DecodedUser = {
+  //   id: string;
+  //   email: string;
+  //   role: "admin" | "user";
+  // };
 
 
-  const JWT_SECRET = process.env.JWT_SECRET || "your-secret";
+  // const JWT_SECRET = process.env.JWT_SECRET || "your-secret";
 
 
 
@@ -28,11 +28,11 @@
   const JWT_EXPIRES = 90 * 60; 
 
   // ✅ توليد التوكن
-  const generateToken = ({ id, role }: { id: string; role: "admin" | "user" }) => {
-    return jwt.sign({ id, role }, process.env.JWT_SECRET as string, {
-      expiresIn: JWT_EXPIRES,
-    });
-  };
+  // const generateToken = ({ id, role }: { id: string; role: "admin" | "user" }) => {
+  //   return jwt.sign({ id, role }, process.env.JWT_SECRET as string, {
+  //     expiresIn: JWT_EXPIRES,
+  //   });
+  // };
 
 
 
@@ -95,7 +95,7 @@
   //   delete data.avatar;
   // }
 
-  // ✅ التحقق من الجلسة
+  // التحقق من الجلسة
   export const protect = async () => {
     try {
       const cookieStore = await cookies(); 
@@ -113,7 +113,7 @@
     }
   };
 
-  // ✅ الحصول على بيانات المستخدم
+  // الحصول على بيانات المستخدم
   export const getUser = async () => {
     try {
       await connect();
@@ -126,7 +126,7 @@
       const user = await User.findById(decode.id).lean(); // نحصل على كائن بسيط
       if (!user) return { error: "User not found" };
 
-      // ✅ نحذف أو نحول كل ObjectId
+      //  نحذف أو نحول كل ObjectId
       const cleanUser = {
         ...user,
         _id: user._id.toString(),
@@ -147,7 +147,7 @@
   };
 
 
-  // ✅ تسجيل الخروج الصحيح
+  // تسجيل الخروج الصحيح
   export const logout = async () => {
     try {
       const response = NextResponse.json({ success: "Logout successful" });
@@ -155,7 +155,7 @@
       response.cookies.set("token", "", {
         httpOnly: true,
         maxAge: 0, // لحذف الكوكيز فورًا
-        path: "/", // اجعلها / إذا كانت الكوكيز معرفة بـ /
+        path: "/", 
         sameSite: "lax",
         secure: process.env.NODE_ENV === "production",
       });

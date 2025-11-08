@@ -58,7 +58,7 @@ export default function CartPage() {
         
       )}
 
-      <Link href="/games" className="text-yellow-500 decoration-0 hover:text-green-500 block mt-6 duration-150 w-36">
+      <Link href="/Home" className="text-yellow-500 decoration-0 hover:text-green-500 block mt-6 duration-150 w-36">
       Back To Home ⬅ 
       </Link>
     </div>

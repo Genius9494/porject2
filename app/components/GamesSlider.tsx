@@ -21,9 +21,9 @@ const GamesSlider = ({
 }) => {
   return (
     <div>
-      <div className="flex flex-col gap-6 mt-14">
-        <div className="w-full justify-between flex items-center">
-          <Heading text={title} className="animate-pulse font-semibold " />
+      <div className="flex flex-col gap-6 mt-14 rounded-2xl ">
+        <div className="w-full justify-between flex items-center hover:shadow-[0_0_20px_rgba(0,255,255,0.6)]">
+          <Heading text={title} className="animate-pulse font-semibold  " />
           <Link className="text-yellow-300 font-semibold hover:text-green-300" href="/games">
             Browse All Games
           </Link>
