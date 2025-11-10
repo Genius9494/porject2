@@ -1,85 +1,85 @@
-import { create } from "zustand";
+// "use client";
 
-interface Post {
-  _id?: string;
-  text: string;
-  likes: number;
-  date: string;
-  userName?: string;
-  userId?: string;
-  postIndex?: number;
-}
+// import { create } from "zustand";
 
-interface CommunityState {
-  posts: Post[];
-  fetchPosts: () => Promise<void>;
-  addPost: (userId: string, text: string) => Promise<void>;
-  likePost: (userId: string, postIndex: number) => Promise<void>;
-}
+// export interface IPost {
+//   _id: string;
+//   text: string;
+//   likes: number;
+//   date: string;
+//   userId: string;
+//   userName: string;
+//   postIndex: number;
+//   likedBy: string[];
+// }
 
-export const useCommunityStore = create<CommunityState>((set) => ({
-  posts: [],
+// interface CommunityState {
+//   posts: IPost[];
+//   fetchPosts: () => Promise<void>;
+//   addPost: (userId: string, text: string) => Promise<IPost | null>;
+//   likePost: (userId: string, postUserId: string, postIndex: number) => Promise<void>;
+// }
 
-  fetchPosts: async () => {
-    try {
-      const res = await fetch("/api/posts");
-      if (!res.ok) {
-        const text = await res.text();
-        console.error("❌ Failed to fetch posts:", res.status, text);
-        return;
-      }
-      const data = await res.json().catch(() => []);
-      set({ posts: data });
-    } catch (err) {
-      console.error("❌ fetchPosts exception:", err);
-    }
-  },
+// export const useCommunityStore = create<CommunityState>((set, get) => ({
+//   posts: [],
 
-  addPost: async (userId: string, text: string) => {
-    try {
-      const res = await fetch("/api/posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, text }),
-      });
+//   fetchPosts: async () => {
+//     try {
+//       const res = await fetch("/api/posts");
+//       if (!res.ok) return;
+//       const data = await res.json();
+//       set({ posts: data });
+//     } catch (error) {
+//       console.error("Failed to fetch posts:", error);
+//     }
+//   },
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error("❌ Failed to add post:", res.status, errorText);
-        return;
-      }
+//   addPost: async (userId, text) => {
+//     try {
+//       const res = await fetch("/api/posts", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ userId, text }),
+//       });
+//       if (!res.ok) return null;
+//       const data = await res.json();
+//       set({ posts: [data, ...get().posts] });
+//       return data;
+//     } catch (error) {
+//       console.error("Failed to add post:", error);
+//       return null;
+//     }
+//   },
 
-      const newPost = await res.json().catch(() => null);
-      if (!newPost) {
-        console.error("❌ Server did not return valid JSON");
-        return;
-      }
-
-      set((state) => ({ posts: [newPost, ...state.posts] }));
-    } catch (err) {
-      console.error("❌ addPost exception:", err);
-    }
-  },
-
-  likePost: async (userId: string, postIndex: number) => {
-    try {
-      const res = await fetch(`/api/posts/${userId}/${postIndex}/like`, { method: "POST" });
-      if (!res.ok) {
-        const text = await res.text();
-        console.error("❌ Failed to like post:", res.status, text);
-        return;
-      }
-
-      const data = await res.json();
-      set((state) => ({
-        posts: state.posts.map((p) =>
-          p.userId === userId && p.postIndex === postIndex
-            ? { ...p, likes: data.likes }
-            : p
-        ),
-      }));
-    } catch (err) {
-      console.error("❌ likePost exception:", err);
-    }
-  },
-}));
+//   likePost: async (currentUserId, postUserId, postIndex) => {
+//     try {
+//       const res = await fetch(`/api/posts/${postUserId}/${postIndex}/like`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ userId: currentUserId }),
+//       });
+//       if (!res.ok) {
+//         const text = await res.text();
+//         console.error("Failed to like post:", res.status, text);
+//         return;
+//       }
+//       // تحديث لحظي
+//       const updatedPosts = get().posts.map((p) => {
+//         if (p.userId === postUserId && p.postIndex === postIndex) {
+//           const liked = p.likedBy.includes(currentUserId);
+//           return {
+//             ...p,
+//             likes: liked ? p.likes - 1 : p.likes + 1,
+//             likedBy: liked
+//               ? p.likedBy.filter((id) => id !== currentUserId)
+//               : [...p.likedBy, currentUserId],
+//           };
+//         }
+//         return p;
+//       });
+//       set({ posts: updatedPosts });
+//     } catch (error) {
+//       console.error("Failed to like post:", error);
+//     }
+//   },
+// }));

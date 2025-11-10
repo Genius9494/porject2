@@ -112,9 +112,6 @@
   background: linear-gradient(186deg, rgb(33, 8, 40) 0%, rgb(96, 43, 123) 100%);
 }
 
-#search:hover {
-  background: linear-gradient(186deg, rgb(148, 0, 246) 0%, rgb(164, 35, 61) 100%);
-}
 
 #ratings {
   background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(168, 52, 75) 100%);
@@ -166,7 +163,7 @@
 
 
 body {
-  background: linear-gradient(186deg, rgba(58, 15, 87, 1) 0%, rgb(110, 50, 62) 100%);
+  background: linear-gradient(186deg, rgb(44, 16, 63) 0%, rgb(110, 50, 62) 100%);
   direction: rtl;
 }
 

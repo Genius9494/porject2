@@ -4,6 +4,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import ButtonGame from './components/defaults/ButtonGame';
+import StarBorder from '@/components/StarBorder';
 
 
 export default function SplashPage() {
@@ -25,12 +26,23 @@ export default function SplashPage() {
                 </video>{" "}
 
       <div className="absolute bottom-10 w-full flex justify-center">
-        <button
+        <StarBorder
+                          as="button"
+                          className="custom-class bg-purple-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:bg-green-600 transition animate-bounce "
+                          color="cyan"
+                          speed="2s"
+                          onClick={handleEnterSite}
+
+                        >
+                           Let's go in
+
+                        </StarBorder>
+        {/* <button
           onClick={handleEnterSite}
           className="bg-purple-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:bg-green-600 transition animate-bounce"
         >
           Let's go in
-        </button>
+        </button> */}
         
         
       </div>

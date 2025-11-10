@@ -13,9 +13,8 @@ import Link from "next/link";
 import { FileUploadDemo } from "../FileUpload";
 import { signup } from "@/app/actions/auth";
 import { toast } from "react-toastify";
-import CountryInput from "./CountryInput";
 import { useRouter } from "next/navigation";
-import { Router } from "lucide-react";
+import ElectricBorder from "@/components/ElectricBorder";
 
 
 
@@ -118,6 +117,15 @@ const Singup = () => {
 
   return (
     <MotionItem animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 30 }}>
+      {/* <ElectricBorder
+              color="#7df9ff"
+              speed={0.7}
+              chaos={0.5}
+              thickness={2}
+              style={{ borderRadius: 20 }}
+              className="w-full overflow-hidden"
+      
+            > */}
       <MaxWidthWrapper
         customPadding={" py-14"}
         className=" flex flex-col gap-4 items-center  w-full bg-black/60 rounded-2xl border border-input relative"
@@ -153,6 +161,7 @@ const Singup = () => {
           <button onClick={backToHome} className=" "> Home </button>
         </div>
       </MaxWidthWrapper>
+      {/* </ElectricBorder> */}
     </MotionItem>
   );
 };

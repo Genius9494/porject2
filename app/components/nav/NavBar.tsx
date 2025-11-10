@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import GameAssistant from "../assistant/GameAssistant";
+import StarBorder from "@/components/StarBorder";
 
 
 
@@ -122,7 +123,27 @@ const NavBar = () => {
         ) : (
 
           <div className="Split flex items-center gap-4 ">
-                <button
+
+                <StarBorder
+                  as="button"
+                  className="custom-class"
+                  color="cyan"
+                  speed="2s"
+                  onClick={Login}
+                >
+                  {route}
+                </StarBorder>
+                <StarBorder
+                  as="button"
+                  className="custom-class "
+                  color="cyan"
+                  speed="2s"
+                  onClick={SignUp}
+                >
+                  {routing}
+                </StarBorder>
+
+                {/* <button
                   className="bg-[#481c74]  rounded-tr-2xl rounded-bl-xl py-2 px-8   hover:scale-x-110 hover:rounded-tr-none hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-br-xl duration-200 "
                   onClick={Login}
 
@@ -132,7 +153,7 @@ const NavBar = () => {
                   className="bg-[#481c74] rounded-tr-2xl rounded-bl-xl py-2 px-6  hover:scale-x-110 hover:rounded-tr-none hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-br-xl duration-200 "
                   onClick={SignUp}
                 >
-                  {routing} </button>
+                  {routing} </button> */}
           </div>
         )}
 

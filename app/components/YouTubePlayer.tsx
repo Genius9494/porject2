@@ -1,13 +1,10 @@
-import React from "react";
+"use client";
 
 type Props = {
     videoId: string;
 };
 
-
-const YouTubePlayer: React.FC<Props> = ({ videoId }) => {
-    console.log("Rendering YouTubePlayer with ID:", videoId);
-
+export default function YouTubePlayer({ videoId }: Props) {
     return (
         <div className="aspect-video w-full rounded-xl overflow-hidden mt-2">
             <iframe
@@ -18,11 +15,7 @@ const YouTubePlayer: React.FC<Props> = ({ videoId }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 title="YouTube Video"
-                
             />
         </div>
-        
     );
-};
-
-export default YouTubePlayer;
+}

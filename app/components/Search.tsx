@@ -7,6 +7,7 @@ import MotionItem from "./defaults/MotionItem";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import Image from "next/image";
+import ElectricBorder from "@/components/ElectricBorder";
 
 // debounce function
 const useDebouncedValue = (value: string, delay: number) => {
@@ -60,9 +61,18 @@ const Search = () => {
   return (
     <div id="search"
       ref={outsideREF}
-      className="w-full flex relative group items-center gap-2 justify-between px-4 border border-input rounded-xl md:w-[40%]"
+      className="w-full flex relative group items-center gap-2 justify-between border border-input rounded-xl md:w-[40%]"
       
     >
+      <ElectricBorder
+        color="#9116ac"
+        speed={0.7}
+        chaos={0.5}
+        thickness={2}
+        style={{ borderRadius: 20 }}
+        className="w-full"
+        
+      >
       <input id="ppp" placeholder="Search For Games"
         value={query}
         onChange={(e) => {
@@ -72,7 +82,9 @@ const Search = () => {
         }}
         className="py-2 text-base w-full bg-transparent text-gray-50 border-none outline-none active:outline-none ring-0 placeholder:text-gray-500 font-semibold"
       />
-      <div className="flex items-center gap-2">
+      </ElectricBorder>
+
+      <div className="flex items-center gap-2 absolute left-0 translate-x-3">
         <XIcon
           onClick={() => {
             setQuery("");

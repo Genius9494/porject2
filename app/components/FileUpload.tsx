@@ -13,7 +13,7 @@ export function FileUploadDemo({ name }: { name: string }) {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto min-h-64 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg">
+    <div className="w-full max-w-4xl mx-auto min-h-64  bg-black dark:bg-black  dark:border-neutral-800 rounded-lg">
       <FileUpload onChange={handleFileUpload} />
     </div>
   );

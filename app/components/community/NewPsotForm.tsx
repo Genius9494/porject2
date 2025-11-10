@@ -1,38 +1,36 @@
-"use client";
+// "use client";
 
-import { useState } from "react";
-import { useCommunityStore } from "@/lib/communityStore";
+// import React, { useState } from "react";
 
-interface Props {
-    userId: string; // يجب تمرير معرف المستخدم الحالي
-}
+// interface NewPostFormProps {
+//     user: { id: string; name: string };
+//     onAddPost: (text: string) => void;
+// }
 
-export default function NewPostForm({ userId }: Props) {
-    const [text, setText] = useState("");
-    const { addPost } = useCommunityStore();
+// export default function NewPostForm({ user, onAddPost }: NewPostFormProps) {
+//     const [text, setText] = useState("");
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!text.trim()) return;
+//     const handleSubmit = (e: React.FormEvent) => {
+//         e.preventDefault();
+//         if (!text.trim()) return;
+//         onAddPost(text);
+//         setText("");
+//     };
 
-        await addPost(userId, text);
-        setText("");
-    };
-
-    return (
-        <form onSubmit={handleSubmit} className="mb-6">
-            <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Share something with the community..."
-                className="w-full bg-purple-900/30 text-white p-3 rounded-xl mb-2 resize-none"
-            />
-            <button
-                type="submit"
-                className="bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-lg"
-            >
-                Post
-            </button>
-        </form>
-    );
-}
+//     return (
+//         <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
+//             <textarea
+//                 value={text}
+//                 onChange={(e) => setText(e.target.value)}
+//                 placeholder={`ماذا تريد أن تقول، ${user.name}?`}
+//                 className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+//             />
+//             <button
+//                 type="submit"
+//                 className="self-end px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
+//             >
+//                 نشر
+//             </button>
+//         </form>
+//     );
+// }

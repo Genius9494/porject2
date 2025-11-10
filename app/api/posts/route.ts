@@ -1,89 +1,77 @@
-import { NextResponse } from "next/server";
-import User, { IUser } from "@/app/models/user";
-import connect from "@/lib/connect";
+// import { NextResponse } from "next/server";
+// import User, { IPost } from "@/app/models/user";
+// import connect from "@/lib/connect";
 
+// export async function GET() {
+//   try {
+//     await connect();
 
-export async function GET() {
-  try {
-    await connect();
+//     const users = await User.find({ "posts.0": { $exists: true } });
 
-    const usersWithPosts = await User.find({ "posts.0": { $exists: true } });
+//     const posts: Array<IPost & { userName: string; userId: string; postIndex: number }> = [];
 
-    const posts = usersWithPosts.flatMap(u =>
-      u.posts.map((p:any, index: any) => ({
-        ...p.toObject(),
-        userName: u.name,
-        userId: u._id,
-        postIndex: index, // لتسهيل عملية Like
-      }))
-    );
+//     users.forEach((user) => {
+//       user.posts.forEach((p, idx) => {
+//         posts.push({
+//   _id: p._id?.toString() || "",
+//   text: p.text,
+//   likes: p.likes,
+//   date: p.date instanceof Date ? p.date.toISOString() : new Date(p.date).toISOString(),
+//   userId: p.userId?.toString() || "",
+//   likedBy: p.likedBy?.map((id) => id.toString()) || [],
+//   userName: user.name,
+//   postIndex: idx,
+// });
 
-    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+//       });
+//     });
 
-    return NextResponse.json(posts);
-  } catch (err) {
-    console.error("GET /api/posts error:", err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
-}
+//     // ترتيب المنشورات حسب التاريخ الأحدث
+//     posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+//     return NextResponse.json(posts);
+//   } catch (err) {
+//     console.error("GET /api/posts error:", err);
+//     return NextResponse.json({ error: "Server error" }, { status: 500 });
+//   }
+// }
 
-export async function POST(req: Request) {
-  try {
-    await connect();
-    const { userId, text } = await req.json();
+// export async function POST(req: Request) {
+//   try {
+//     await connect();
+//     const { userId, text } = await req.json();
 
-    if (!text || text.trim() === "") {
-      return NextResponse.json({ error: "Text is required" }, { status: 400 });
-    }
+//     if (!text?.trim() || !userId) {
+//       return NextResponse.json({ error: "Missing userId or text" }, { status: 400 });
+//     }
 
-    // استخدام Generic لإخبار TypeScript أن user من نوع IUser
-    const user = await User.findById<IUser>(userId);
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
+//     const user = await User.findById(userId);
+//     if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-    const newPost = { text, likes: 0, date: new Date() };
-    user.posts.push(newPost);
-    await user.save();
+//     const newPost: IPost = {
+//       text,
+//       likes: 0,
+//       date: new Date(),
+//       userId: user._id.toString(),
+//       likedBy: [], // إضافة حقل likedBy الجديد
+//     };
 
-    return NextResponse.json({
-      ...newPost,
-      userName: user.name,
-      userId: user._id,
-      postIndex: user.posts.length - 1,
-    });
-  } catch (err) {
-    console.error("POST /api/posts error:", err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
-}
+//     user.posts.push(newPost);
+//     await user.save();
 
-// ======================
-// POST: زيادة إعجاب بوست
-// ======================
-// يفضل عمل ملف route منفصل: /api/posts/[userId]/[postIndex]/like/route.ts
-export async function POST_LIKE(req: Request, { params }: { params: { userId: string; postIndex: string } }) {
-  try {
-    await connect();
+//     // إرسال plain object فقط
+//     const responsePost = {
+//       ...newPost,
+//       _id: newPost._id?.toString() || "",
+//       date: newPost.date instanceof Date ? newPost.date.toISOString() : newPost.date,
+//       userName: user.name,
+//       postIndex: user.posts.length - 1,
+//       likedBy: [],
+//     };
 
-    const { userId, postIndex } = params;
-    const user = await User.findById<IUser>(userId);
-    if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
-
-    const index = parseInt(postIndex, 10);
-    if (!user.posts[index]) return NextResponse.json({ error: "Post not found" }, { status: 404 });
-
-    user.posts[index].likes += 1;
-    await user.save();
-
-    return NextResponse.json({
-      _id: user._id,
-      postIndex: index,
-      likes: user.posts[index].likes,
-    });
-  } catch (err) {
-    console.error("POST_LIKE /api/posts/:userId/:postIndex error:", err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
-}
+//     return NextResponse.json(responsePost);
+//   } catch (err) {
+//     console.error("POST /api/posts error:", err);
+//     return NextResponse.json({ error: "Server error" }, { status: 500 });
+//   }
+// }

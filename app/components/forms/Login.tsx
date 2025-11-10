@@ -14,6 +14,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import ElectricBorder from "@/components/ElectricBorder";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email" }),
@@ -68,10 +69,20 @@ const Login = () => {
       animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
       initial={{ opacity: 0, y: 100 }}
     >
+      {/* <ElectricBorder
+        color="#7df9ff"
+        speed={0.7}
+        chaos={0.5}
+        thickness={2}
+        style={{ borderRadius: 20 }}
+        className="w-full"
+
+      > */}
       <MaxWidthWrapper
         customPadding="py-14"
         className="flex flex-col gap-4 items-center w-full bg-black/40 rounded-2xl border border-input relative"
       >
+        
         <div className="flex">
         <div className=" left-0 top-0 animate-spin flex">
           <img src="./tree.png" alt="osama" className="w-12 h-12 rounded-full" />
@@ -98,6 +109,7 @@ const Login = () => {
         </div>
         
       </MaxWidthWrapper>
+        {/* </ElectricBorder> */}
     </MotionItem>
   );
 };

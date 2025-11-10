@@ -17,7 +17,7 @@ export default function MyRewardsPage() {
             
 
             {rewards.length === 0 ? (
-                <p className="text-gray-400">No rewards yet. Spin the wheel to earn some!</p>
+                <p className="text-gray-400">No rewards yet, Rotate The Wheel Spin To Gain More</p>
             ) : (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
                     {rewards.map((r, i) => (

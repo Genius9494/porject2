@@ -203,7 +203,7 @@ export default function SpinWheel() {
         <div className="Split relative flex flex-col items-center justify-center h-screen text-white">
             {/* 🔻 المؤشر */}
             <div className="absolute top-[calc(50%-200px)] z-20">
-                <div className="w-0 h-0 border-l-[18px] border-l-transparent border-r-[18px] border-r-transparent border-b-[35px] border-b-red-500 -rotate-180 -translate-y-32"></div>
+                <div className="w-0 h-0 border-l-[18px] border-l-transparent border-r-[18px] border-r-transparent border-b-[35px] border-b-red-500 -rotate-180 -translate-y-16"></div>
             </div>
 
             {/* 🎡 العجلة */}
@@ -222,11 +222,12 @@ export default function SpinWheel() {
                 className="fixed inset-0 pointer-events-none z-40"
             />
 
+                <div className="flex gap-5 mt-5">
             {/* 🟢 زر السبين */}
             <button
                 onClick={spinWheel}
                 disabled={spinning}
-                className="mt-10 bg-green-600 hover:bg-green-700 text-white font-bold px-12 py-4 rounded-xl shadow-lg transition disabled:opacity-50"
+                className=" bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-xl shadow-lg transition disabled:opacity-50"
             >
                 {spinning ? "Spinning..." : "🎡 SPIN NOW"}
             </button>
@@ -237,11 +238,11 @@ export default function SpinWheel() {
                     setShowOverlay(false);
                     window.location.href = "/rewards";
                 }}
-                className="mt-4 bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded-lg text-white font-bold"
+                className=" bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-lg text-white font-bold"
             >
                 View My Rewards 🏆
             </button>
-
+            </div>
             {/* 🏆 شاشة الفوز */}
             {showOverlay && (
                 <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center z-50">
