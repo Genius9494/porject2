@@ -1,7 +1,44 @@
 "use client";
-export const dynamic = "force-dynamic";
-import VideoComponent from "../components/VideoComponent";
-export default function VideoPage() { return <VideoComponent />; }
+
+import React, { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import YouTubePlayer from "../components/YouTubePlayer";
+
+function VideoContent() {
+    const searchParams = useSearchParams();
+    const game = searchParams.get("game");
+
+    if (!game) {
+        return <p className="text-center text-red-500 mt-8">❌ No game provided</p>;
+    }
+
+    return (
+        <div className="p-6">
+            <h1 className="text-2xl font-bold mb-4 text-white">{game} Trailer</h1>
+            <YouTubePlayer videoId={game} />
+        </div>
+    );
+}
+
+export default function VideoPage() {
+    return (
+        <Suspense fallback={<p className="text-center mt-8">Loading video...</p>}>
+            <VideoContent />
+        </Suspense>
+    );
+}
+
+
+
+
+
+
+
+
+// "use client";
+// export const dynamic = "force-dynamic";
+// import VideoComponent from "../components/VideoComponent";
+// export default function VideoPage() { return <VideoComponent />; }
 
 
 
